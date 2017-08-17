@@ -1,0 +1,8 @@
+create table Usuarios (
+	`Id` int AUTO_INCREMENT NOT NULL primary key,
+	`Nombre` varchar(30) NULL,
+	`Contrasena` varchar(30) NULL,
+	`Rol` varchar(30) NULL,
+	`Telefono` varchar(30) NULL,
+	`Habilitado` BOOLEAN NULL DEFAULT '1'
+);

@@ -1,0 +1,96 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    
+    height: 60px;
+    line-height: 60px;
+    /* Vertically center the text there */
+    
+    background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 60px 15px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+#barranav {
+    background-color: #01bb86 !important;
+}
+
+.imgc {
+    padding-top: 250px;
+    vertical-align: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Menu Styles */
+
+a.nav-link {
+    color: rgba(255, 243, 243, 1) !important;
+}
+
+a.nav-link:hover {
+    color: rgba(255, 243, 243, 0.5) !important;
+}
+/* Create Facturas Styles */
+
+.tabla1 {
+    margin-bottom: 15px;
+    display: block;
+}
+
+.tabla2 {
+    display: block;
+    padding-top: 10px;
+}
+
+.top70 {
+    margin-top: 70px;
+}
+
+.completo {
+    width:100%;
+}
+
+/* Estilo Unicamente para mostrar los diferentes menús */
+
+.RMenu{
+    position: absolute;
+    right: 0;
+    top:200px;
+}
+
+.RMenu button{
+    width: 150px;
+    margin-bottom: 5px;
+}

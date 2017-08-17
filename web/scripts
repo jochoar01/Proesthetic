@@ -1,0 +1,90 @@
+CREATE TABLE pedidos (
+  `idpedidos` INT NOT NULL AUTO_INCREMENT UNIQUE,
+  `caja` VARCHAR(45),
+  `clinica` VARCHAR(45),
+  `paciente` VARCHAR(45),
+  `orden` VARCHAR(45),
+  `antagonista` VARCHAR(45),
+  `fecha_entrada` VARCHAR(45),
+  `odontologo` VARCHAR(45),
+  `tipo_trabajo` VARCHAR(45),
+  `fecha_entrega` VARCHAR(45),
+  `prueba1` VARCHAR(45),
+  `prueba2` VARCHAR(45),
+  `prueba3` VARCHAR(45),
+  `Habilitado` TINYINT(1),
+  PRIMARY KEY (`idpedidos`));
+
+"insert into pedidos(caja,clinica,paciente,orden,antagonista,fecha_entrada,odontologo,tipo_trabajo,fecha_entrega,prueba1,prueba2,prueba3,Habilitado)Values('"+caja+"','"+clinica+"','"+paciente+"','"+orden+"','"+antagonista+"','"+fecha_entrada+"','"+odontologo+"','"+tipo_trabajo+"','"+fecha_entrega+"','"+prueba1+"','"+prueba2+"','"+prueba3+"',"+true+");";
+
+
+
+
+
+CREATE TABLE Clinicas(
+  `idClinicas` INT NOT NULL AUTO_INCREMENT,
+  `NitClinicas` varchar(15) DEFAULT NULL,
+  `NombreClinica` VARCHAR(45) NULL,
+  `DireccionClinica` VARCHAR(45) NULL,
+  `TelefonoClinica` VARCHAR(45) NULL,
+  `Habilitado` TINYINT(1) NULL,
+  PRIMARY KEY (`idClinicas`),
+  UNIQUE INDEX `idClinicas_UNIQUE` (`idClinicas` ASC));
+
+
+
+
+CREATE TABLE Odontologos (
+  `idOdontologos` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `NombreOdontologo` VARCHAR(45) NULL,
+  `TelefonoOdontologo` VARCHAR(45) NULL,
+  `EmailOdontologo` varchar(45) DEFAULT NULL,
+  `Habilitado` TINYINT(1) NULL,
+  PRIMARY KEY (`idOdontologos`),
+  UNIQUE INDEX `idOdontologos_UNIQUE` (`idOdontologos` ASC));
+
+
+
+CREATE TABLE Usuarios (
+  `idUsuarios` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `NombreUsuario` VARCHAR(45) NULL,
+  `Nombre` VARCHAR(45) NULL,
+  `Rol` VARCHAR(45) NULL,
+  `Password` VARCHAR(45) NULL,
+  `Habilitado` TINYINT(1) NULL,
+  PRIMARY KEY (`idUsuarios`),
+  UNIQUE INDEX `idUsuarios_UNIQUE` (`idUsuarios` ASC));
+
+insert into Usuarios(NombreUsuario,Nombre,Rol,Password,Habilitado) 
+values('jochor','JUAN OCHOA','SISTEMAS','1234',true),
+      ('xsalazar','DIANA SALAZAR','ADMINISTRADOR','1234',true),
+      ('jsalazar','JHON SALAZAR','COORDINADOR','1234',true);
+
+insert into pedidos(
+caja,
+clinica,
+paciente,
+orden,
+antagonista,
+fecha_entrada,
+odontologo,
+tipo_trabajo,
+fecha_entrega,
+prueba1,
+prueba2,
+prueba3,
+Habilitado) 
+ Values (
+'caja',
+'clinica',
+'paciente',
+'orden', 
+'antagonista',
+'25-04-2017',
+'juan',
+'tipo',
+'25-04-2017',
+'prueba1',
+'prueba2',
+'prueba3', 
+ true);
