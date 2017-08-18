@@ -6,13 +6,11 @@
 package ServletsSearch;
 
 import Controller.ConectaDB;
-import Persistencias.Usuarios;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,48 +37,42 @@ public class UsuarioLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        ArrayList<Usuarios> Usuario = new ArrayList();
-        HttpSession session = request.getSession();
-        
+
+        HttpSession session = request.getSession(true);
+
         try {
             //Instanciamos las conexiones
             ConectaDB c = new ConectaDB();
             Connection con = c.conectar();
             Statement stm = con.createStatement();
-            //Obtener parametros
-//            String user = (String)request.getParameter("usrname");
-//            String pass = (String)request.getParameter("psw");
-            //Consultas
-//            ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `NombreUsuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0,1;");
-//            while( rs.next() ) {
-//                Usuarios usu = new Usuarios();
-//                //Guardar en clase Usuarios
-//                usu.setNombre((String)rs.getString("Nombre"));
-//                usu.setRol((String)rs.getString("Rol"));
-//                //Guardar los resultados en el ArrayList
-//                Usuario.add(usu);
-//                //Guardar datos en la session
-//                session.setAttribute("Login", Usuario);
-//                break;
-            String pass;
-            String user;
 
-             ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `NombreUsuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0,1;");
-              
-            }
-            //Cerramos las conexiones
+            String user = (String) request.getParameter("usrname");
+            String pass = (String) request.getParameter("psw");
+
+            ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `NombreUsuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0,1;");
+
+            if (rs.next()) {
+
+                session.setAttribute("rol", rs.getString(4));
+
+                session.setAttribute("nombre", rs.getString(3));
+
+            } 
+               
+            
+            if (rs.getString(4).equalsIgnoreCase("SISTEMAS")) {
+                    response.sendRedirect("inicio.jsp");
+
+                }
+
+           
             stm.close();
             con.close();
             c.cierraConexion();
-            
-            if(Usuario.size() > 0){
-                response.sendRedirect("inicio.jsp");
-            }else{
-                response.sendRedirect("index.jsp");
-            }
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
+
+            //Cerramos las conexiones
+        } catch (SQLException e) {
+            e.getMessage();
         }
     }
 

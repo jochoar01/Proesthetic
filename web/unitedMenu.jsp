@@ -2,8 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    ArrayList<Usuarios> Usuario = (ArrayList<Usuarios>)session.getAttribute("Login");
-    Usuarios objUsuario = Usuario.get(0);
+
+  
 %>   
 <nav id="barranav" class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
                 </div>
             </li>
             -->
-            <% if(objUsuario.getRol().equals("SISTEMAS")){ %>
+            <% if(session.getAttribute("rol").equals("SISTEMAS")){ %>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Administración
@@ -58,7 +58,7 @@
         </ul>
         <ul class="nav nav-pills float-right">
             <li class="nav-item">
-                <a class="nav-link"><b>Usuario:</b> <%= objUsuario.getNombre() %> <b>- Rol:</b> <%= objUsuario.getRol() %></a>
+                <a class="nav-link"><b>Usuario:</b> <%= session.getAttribute("nombre") %> <b>- Rol:</b> <%= session.getAttribute("rol") %></a>
             </li>
         </ul>
     </div>
