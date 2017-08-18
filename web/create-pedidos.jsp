@@ -16,7 +16,7 @@
     </head>
     <body>
         <!-- Fixed navbar -->
-         <%@include file="unitedMenu.jsp" %>
+        <%@include file="unitedMenu.jsp" %>
         <!-- Begin page content -->
         <div class="container">
             <h2>Creacion de Pedidos</h2>
@@ -90,11 +90,11 @@
                 </form>
             </div>
             <!-- End Row -->
-        <!-- End Complete Grid -->
-        <%@include file="unitedFooter.jsp" %>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="bootstrap/js/jquery.min.js"></script>
-        <script src="bootstrap/js/tether.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+            <!-- End Complete Grid -->
+            <%@include file="unitedFooter.jsp" %>
+            <!-- jQuery first, then Tether, then Bootstrap JS. -->
+            <script src="bootstrap/js/jquery.min.js"></script>
+            <script src="bootstrap/js/tether.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

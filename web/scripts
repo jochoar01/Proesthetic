@@ -88,3 +88,8 @@ Habilitado)
 'prueba2',
 'prueba3', 
  true);
+
+para logs
+
+insert into logs (fecha,rol,usuario,accion)
+values(now(),'rol','usuario','accion');
