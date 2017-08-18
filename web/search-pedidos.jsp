@@ -55,7 +55,7 @@
                             <div class="btn-group btn-xs">
                                 <a href="view-pedidos.jsp?Id=<%= p%>" class="btn btn-primary">Ver</a>
                             </div>
-                            <% if(objUsuario.getRol().equals("SISTEMAS")){ %>
+                                <% if(session.getAttribute("rol").equals("SISTEMAS")){ %>
                             <div class="btn-group btn-xs">
                                 <a href="EliminarPedidos?Id=<%=l.getIdpedidos()%>" class="btn btn-danger">Eliminar</a>
                             </div>
