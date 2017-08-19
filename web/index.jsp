@@ -70,5 +70,6 @@
         <script src="bootstrap/js/tether.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="JavaScript/funciones.js"></script>
+        <script src="JavaScript/md5.min.js"></script>
     </body>
 </html>
