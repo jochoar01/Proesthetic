@@ -56,7 +56,7 @@ public class UsuarioLogin extends HttpServlet {
                 session.setAttribute("rol", rs.getString(4));
 
                 session.setAttribute("nombre", rs.getString(3));
-
+                System.out.println(rs.getString(3));
             } 
                
             

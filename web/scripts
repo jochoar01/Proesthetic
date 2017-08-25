@@ -91,5 +91,4 @@ Habilitado)
 
 para logs
 
-insert into logs (fecha,rol,usuario,accion)
-values(now(),'rol','usuario','accion');
+insert into logs (fecha,rol,usuario,accion)values(now(),'rol','usuario','accion');

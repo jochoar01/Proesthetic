@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "create_pedidos", urlPatterns = {"/create_pedidos"})
 public class create_pedidos extends HttpServlet {
@@ -23,6 +24,7 @@ public class create_pedidos extends HttpServlet {
              Controller.ConectaDB c = new Controller.ConectaDB();
             Connection con = c.conectar();
             Statement stm = con.createStatement();
+            HttpSession session = request.getSession();
 
             String caja = request.getParameter("Caja");
             String clinica = request.getParameter("Clinica");
@@ -38,8 +40,12 @@ public class create_pedidos extends HttpServlet {
             String prueba3 = request.getParameter("Prueba3");                                                                            
             
             String query = "INSERT INTO `pedidos`(`caja`,`clinica`,`paciente`,`orden`,`antagonista`,`fecha_entrada`,`odontologo`,`tipo_trabajo`,`fecha_entrega`,`prueba1`,`prueba2`,`prueba3`,`Habilitado`) VALUES ('" + caja + "','" + clinica + "','" + paciente + "','" + orden + "','" + antagonista + "','" + fecha_entrada + "','" + odontologo + "','" + tipo_trabajo + "','" + fecha_entrega + "','" + prueba1 + "','" + prueba2 + "','" + prueba3 + "'," + true + ");";
-
             stm.execute(query);
+            String sQuery = query.replace("'", "`");
+            String querylog= "insert into logs (fecha,rol,usuario,accion)values(now(),'"+session.getAttribute("rol")+"','"+session.getAttribute("nombre")+"','"+ sQuery + "')";
+
+            
+            stm.execute(querylog);
             stm.close();
             con.close();
             c.cierraConexion();
