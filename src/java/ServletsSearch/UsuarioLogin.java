@@ -57,15 +57,19 @@ public class UsuarioLogin extends HttpServlet {
 
                 session.setAttribute("nombre", rs.getString(3));
                 System.out.println(rs.getString(3));
-            } 
-               
-            
+            }
+
             if (rs.getString(4).equalsIgnoreCase("SISTEMAS")) {
+                response.sendRedirect("inicio.jsp");
+
+            } else {
+                if (rs.getString(4).equalsIgnoreCase("ADMINISTRADOR")) {
                     response.sendRedirect("inicio.jsp");
 
                 }
 
-           
+            }
+
             stm.close();
             con.close();
             c.cierraConexion();
