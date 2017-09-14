@@ -66,6 +66,18 @@ public class UsuarioLogin extends HttpServlet {
                 if (rs.getString(4).equalsIgnoreCase("ADMINISTRADOR")) {
                     response.sendRedirect("inicio.jsp");
 
+                } else {
+                    if (rs.getString(4).equalsIgnoreCase("COORDINADOR")) {
+                        response.sendRedirect("inicio.jsp");
+
+                    } else {
+                        if (rs.getString(4).equalsIgnoreCase("SECRETARIA")) {
+                            response.sendRedirect("inicio.jsp");
+
+                        }
+
+                    }
+
                 }
 
             }

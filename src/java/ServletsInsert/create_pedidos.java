@@ -22,10 +22,17 @@ public class create_pedidos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             Controller.ConectaDB c = new Controller.ConectaDB();
+           HttpSession session = request.getSession();
+           
+            String  usr = (String)session.getAttribute("rol");
+            if(usr.equalsIgnoreCase("jperez")){
+            c.setUsuario("jperez");
+            c.setClave("4321");
+            }
        
             Connection con = c.conectar();
             Statement stm = con.createStatement();
-            HttpSession session = request.getSession();
+//            HttpSession session = request.getSession();
 
             String caja = request.getParameter("Caja");
             String clinica = request.getParameter("Clinica");

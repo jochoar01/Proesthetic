@@ -58,7 +58,8 @@ CREATE TABLE Usuarios (
 insert into Usuarios(NombreUsuario,Nombre,Rol,Password,Habilitado) 
 values('jochor','JUAN OCHOA','SISTEMAS','1234',true),
       ('xsalazar','DIANA SALAZAR','ADMINISTRADOR','1234',true),
-      ('jsalazar','JHON SALAZAR','COORDINADOR','1234',true);
+      ('jsalazar','JHON SALAZAR','COORDINADOR','1234',true),     
+      ('jperez','Josefa Perez','SECRETARIA','1234',true);
 
 insert into pedidos(
 caja,
@@ -273,3 +274,32 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2017-08-31 19:36:00
+
+
+Se crea usuarios en la base de datos
+
+CREATE USER 'SISTEMAS'@'localhost' IDENTIFIED BY '4321';
+CREATE USER 'SECRETARIA'@'localhost' IDENTIFIED BY '4321';
+CREATE USER 'ADMINISTRADOR'@'localhost' IDENTIFIED BY '4321';
+CREATE USER 'COORDINADOR'@'localhost' IDENTIFIED BY '4321';
+
+Permisos roles
+
+GRANT ALL PRIVILEGES ON * . * TO 'SISTEMAS'@'localhost';
+
+GRANT SELECT,INSERT ON * . * TO 'SECRETARIA'@'localhost';
+
+GRANT SELECT,INSERT,UPDATE ON * . * TO 'ADMINISTRADOR'@'localhost';
+
+GRANT SELECT,INSERT,UPDATE ON * . * TO 'COORDINADOR'@'localhost';
+
+
+
+
+GRANT ALL PRIVILEGES ON * . * TO 'SISTEMAS'@'localhost';
+
+GRANT SELECT,INSERT ON * . * TO 'jperez'@'localhost';
+
+GRANT SELECT,INSERT,UPDATE ON * . * TO 'xsalazar'@'localhost';
+
+GRANT SELECT,INSERT,UPDATE ON * . * TO 'jsalazar'@'localhost';

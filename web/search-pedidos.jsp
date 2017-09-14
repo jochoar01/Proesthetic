@@ -49,9 +49,13 @@
                         <td><%=l.getPaciente()%></td>
                         <td><%=l.getOdontologo()%></td>
                         <td>
+                             <% if(session.getAttribute("rol").equals("SISTEMAS") || 
+                                   session.getAttribute("rol").equals("ADMINISTRADOR") ||
+                                   session.getAttribute("rol").equals("COORDINADOR")){ %>
                             <div class="btn-group btn-xs">
                                 <a href="update-pedidos.jsp?Id=<%= p%>" class="btn btn-warning">Editar</a>
                             </div>
+                            <% } %>
                             <div class="btn-group btn-xs">
                                 <a href="view-pedidos.jsp?Id=<%= p%>" class="btn btn-primary">Ver</a>
                             </div>
