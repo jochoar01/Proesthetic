@@ -42,11 +42,14 @@ public class ActualizarPedidos extends HttpServlet {
             
             
 //            Controller.ConectaDB c = new Controller.ConectaDB();
-//            String  usr = (String)session.getAttribute("rol");
-//            if(usr.equalsIgnoreCase("SISTEMAS")){
-//            c.setUsuario("jperez");
-//            c.setClave("4321");
-//            }
+            String  usr = (String)session.getAttribute("rol");
+            if(usr.equalsIgnoreCase("SISTEMAS")){
+            c.setUsuario("SISTEMAS");
+            
+            c.setClave("4321");
+                System.out.println(usr);
+            
+            }
 //            
             
             

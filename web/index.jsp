@@ -39,7 +39,7 @@
                         <h4><span class="glyphicon glyphicon-lock"></span> Iniciar Sesión</h4>
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
-                        <form id="searchForm" action="UsuarioLogin" method="POST">
+                        <form id="searchForm" action="UsuarioLogin" method="post">
                             <div class="form-group">
                                 <label for="usrname"><span class="glyphicon glyphicon-user"></span> Nombre de usuario</label>
                                 <input type="text" class="form-control" name="usrname" id="usrname" placeholder="Ingresar Usuario">
