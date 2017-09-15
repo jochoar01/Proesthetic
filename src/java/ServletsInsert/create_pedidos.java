@@ -21,14 +21,9 @@ public class create_pedidos extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            Controller.ConectaDB c = new Controller.ConectaDB();
+           Controller.ConectaDB c = new Controller.ConectaDB();
            HttpSession session = request.getSession();
            
-            String  usr = (String)session.getAttribute("rol");
-            if(usr.equalsIgnoreCase("jperez")){
-            c.setUsuario("jperez");
-            c.setClave("4321");
-            }
        
             Connection con = c.conectar();
             Statement stm = con.createStatement();

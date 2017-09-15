@@ -303,3 +303,11 @@ GRANT SELECT,INSERT ON * . * TO 'jperez'@'localhost';
 GRANT SELECT,INSERT,UPDATE ON * . * TO 'xsalazar'@'localhost';
 
 GRANT SELECT,INSERT,UPDATE ON * . * TO 'jsalazar'@'localhost';
+
+//       
+
+            String  usr = (String)session.getAttribute("rol");
+            if(usr.equalsIgnoreCase("jperez")){
+            c.setUsuario("jperez");
+            c.setClave("4321");
+            }

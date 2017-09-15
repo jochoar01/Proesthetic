@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,8 +37,19 @@ public class ActualizarPedidos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
             Controller.ConectaDB c = new Controller.ConectaDB();
+           HttpSession session = request.getSession();
+            
+            
+//            Controller.ConectaDB c = new Controller.ConectaDB();
+//            String  usr = (String)session.getAttribute("rol");
+//            if(usr.equalsIgnoreCase("SISTEMAS")){
+//            c.setUsuario("jperez");
+//            c.setClave("4321");
+//            }
+//            
+            
+            
             Connection con = c.conectar();
             Statement stm = con.createStatement();
 
