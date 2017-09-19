@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Crear Pedidos</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/Styles.css">
-        <link rel="stylesheet" type="text/css" href="fonts/css/font-awesome.min.css">
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-
-    </head>
+    <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
         <%@include file="unitedMenu.jsp" %>
         <!-- Begin page content -->
         <div class="container">
-            <h2>Creacion de Pedidos</h2>
+            <div class="card top70">
+                <div class="card-header">
+                    <h2 class="float-left">Creacion de Pedidos</h2>
+                </div>
+            </div>
             <br>
+
+
             <div class="row">
                 <form action="create_pedidos" method="post" class="completo">
                     <div class="form-group">
@@ -89,12 +82,14 @@
                     <!-- End Division -->
                 </form>
             </div>
-            <!-- End Row -->
-            <!-- End Complete Grid -->
-            <%@include file="unitedFooter.jsp" %>
-            <!-- jQuery first, then Tether, then Bootstrap JS. -->
-            <script src="bootstrap/js/jquery.min.js"></script>
-            <script src="bootstrap/js/tether.min.js"></script>
-            <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        </div>
+        <!-- End Row -->
+        <!-- End Complete Grid -->
+        <%@include file="unitedFooter.jsp" %>
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script src="bootstrap/js/jquery.min.js"></script>
+        <script src="bootstrap/js/tether.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
