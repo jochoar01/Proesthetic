@@ -15,6 +15,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="ListarPedidos">Pedidos <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="BusquedaClinicas">Clinicas <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="BusquedaOdontologos">Odontologos <span class="sr-only">(current)</span></a>
+            </li>
             <!--
             <li class="nav-item dropdown" id="ConfigMenu">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,12 +49,13 @@
             <% if(session.getAttribute("rol").equals("SISTEMAS")){ %>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administración
+                Tablas
                 </a>
                 <div class="dropdown-menu">
                     <!--<a id="SedesMenu" class="dropdown-item" href="search-sedes.jsp">Sedes</a>-->
-                    <a class="dropdown-item" href="BusquedaClinicas">Clínicas</a>
-                    <a class="dropdown-item" href="BusquedaOdontologos">Odontólogos</a>
+                    <a class="dropdown-item" href="Tabla-pedidos.jsp">Pedidos</a>
+                    <a class="dropdown-item" href="Tabla-clinicas.jsp">Clinicas</a>
+                    <a class="dropdown-item" href="Tabla-odontologos.jsp">Odontologos</a>
                 </div>
             </li>
             <% } %>

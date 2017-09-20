@@ -1,21 +1,11 @@
 <%@page import="Persistencias.Odontologos"%>
 <%@page import="java.util.ArrayList"%>
 <%
-    ArrayList<Odontologos> Odontologo = (ArrayList<Odontologos>)session.getAttribute("ListaOdontologos");
+    ArrayList<Odontologos> Odontologo = (ArrayList<Odontologos>) session.getAttribute("ListaOdontologos");
 %>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Busqueda de Odontólogos</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/Styles.css">
-        <link rel="stylesheet" type="text/css" href="fonts/css/font-awesome.min.css">
-    </head>
+    <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
         <%@include file="unitedMenu.jsp" %>
@@ -41,27 +31,27 @@
                 <tbody>
                     <%
                         int pos = -1;
-                        try{
+                        try {
                             for (Odontologos obj : Odontologo) {
-                                pos+=1;
+                                pos += 1;
                     %>
                     <tr>
-                        <td><%= obj.getIdOdontologos() %></td>
-                        <td><%= obj.getNombreOdontologo() %></td>
-                        <td><%= obj.getTelefonoOdontologo() %></td>
-                        <td><%= obj.getEmailOdontologo() %></td>
+                        <td><%= obj.getIdOdontologos()%></td>
+                        <td><%= obj.getNombreOdontologo()%></td>
+                        <td><%= obj.getTelefonoOdontologo()%></td>
+                        <td><%= obj.getEmailOdontologo()%></td>
                         <td class="text-success">Activo</td>
                         <td>
-                            <a href="show-odontologos.jsp?id=<%= pos %>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                            <a href="update-odontologos.jsp?id=<%= pos %>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                            <% if(objUsuario.getRol().equals("SISTEMAS")){ %>
-                            <a href="EliminarOdontologos?id=<%= obj.getIdOdontologos() %>" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                            <% } %>
+                            <a href="show-odontologos.jsp?id=<%= pos%>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                            <a href="update-odontologos.jsp?id=<%= pos%>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                <% if (objUsuario.getRol().equals("SISTEMAS")) {%>
+                            <a href="EliminarOdontologos?id=<%= obj.getIdOdontologos()%>" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <% } %>
                         </td>
                     </tr>
                     <%
                             }
-                        }catch(Exception e){
+                        } catch (Exception e) {
                             System.out.println(e.getMessage());
                             response.sendRedirect("index.jsp");
                         };

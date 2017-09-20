@@ -21,10 +21,9 @@ public class create_pedidos extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-           Controller.ConectaDB c = new Controller.ConectaDB();
-           HttpSession session = request.getSession();
-           
-       
+            Controller.ConectaDB c = new Controller.ConectaDB();
+            HttpSession session = request.getSession();
+
             Connection con = c.conectar();
             Statement stm = con.createStatement();
 //            HttpSession session = request.getSession();
@@ -40,14 +39,13 @@ public class create_pedidos extends HttpServlet {
             String fecha_entrega = request.getParameter("Fecha_entrega");
             String prueba1 = request.getParameter("Prueba1");
             String prueba2 = request.getParameter("Prueba2");
-            String prueba3 = request.getParameter("Prueba3");                                                                            
-            
+            String prueba3 = request.getParameter("Prueba3");
+
             String query = "INSERT INTO `pedidos`(`caja`,`clinica`,`paciente`,`orden`,`antagonista`,`fecha_entrada`,`odontologo`,`tipo_trabajo`,`fecha_entrega`,`prueba1`,`prueba2`,`prueba3`,`Habilitado`) VALUES ('" + caja + "','" + clinica + "','" + paciente + "','" + orden + "','" + antagonista + "','" + fecha_entrada + "','" + odontologo + "','" + tipo_trabajo + "','" + fecha_entrega + "','" + prueba1 + "','" + prueba2 + "','" + prueba3 + "'," + true + ");";
             stm.execute(query);
             String sQuery = query.replace("'", "`");
-            String querylog= "insert into logs (fecha,rol,usuario,accion)values(now(),'"+session.getAttribute("rol")+"','"+session.getAttribute("nombre")+"','"+ sQuery + "')";
+            String querylog = "insert into logs (fecha,rol,usuario,accion)values(now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";
 
-            
             stm.execute(querylog);
             stm.close();
             con.close();
@@ -59,9 +57,6 @@ public class create_pedidos extends HttpServlet {
             s.printStackTrace();
         }
     }
-    
-    
-    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

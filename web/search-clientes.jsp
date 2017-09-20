@@ -1,21 +1,11 @@
 <%@page import="Persistencias.Clinicas"%>
 <%@page import="java.util.ArrayList"%>
 <%
-    ArrayList<Clinicas> ListaClinicas = (ArrayList<Clinicas>)session.getAttribute("ListaClinicas");
+    ArrayList<Clinicas> ListaClinicas = (ArrayList<Clinicas>) session.getAttribute("ListaClinicas");
 %>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Busqueda de Clientes</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/Styles.css">
-        <link rel="stylesheet" type="text/css" href="fonts/css/font-awesome.min.css">
-    </head>
+    <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
         <%@include file="unitedMenu.jsp" %>
@@ -39,24 +29,24 @@
                 <tbody>
                     <%
                         int pos = -1;
-                        try{
+                        try {
                             for (Clinicas obj : ListaClinicas) {
                     %>
                     <tr>
-                        <td><%= obj.getIdClinicas() %></td>
+                        <td><%= obj.getIdClinicas()%></td>
                         <td><%= obj.getNombreClinica()%></td>
                         <td class="text-success">Activo</td>
                         <td>
-                            <a href="show-clientes.jsp?pos=<%= pos+=1 %>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                            <a href="update-clientes.jsp?pos=<%= pos %>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                            <% if(objUsuario.getRol().equals("SISTEMAS")){ %>
+                            <a href="show-clientes.jsp?pos=<%= pos += 1%>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                            <a href="update-clientes.jsp?pos=<%= pos%>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                <% if (objUsuario.getRol().equals("SISTEMAS")) {%>
                             <a href="EliminarClinicas?id=<%= obj.getIdClinicas()%>" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                            <% } %>
+                                <% } %>
                         </td>
                     </tr>
                     <%
                             }
-                        }catch(Exception e){
+                        } catch (Exception e) {
                             System.out.println(e.getMessage());
                             response.sendRedirect("index.jsp");
                         };

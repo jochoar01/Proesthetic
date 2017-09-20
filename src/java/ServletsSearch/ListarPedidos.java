@@ -66,7 +66,7 @@ public class ListarPedidos extends HttpServlet {
                 p.setPrueba1     (rs.getString(11));
                 p.setPrueba2     (rs.getString(12));
                 p.setPrueba3     (rs.getString(13));
-
+//                p.setHabilitado  (rs.getString(14));
                 ListarP.add(p);
             }
 

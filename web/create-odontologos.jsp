@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Crear Odontólogos</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/Styles.css">
-        <link rel="stylesheet" type="text/css" href="fonts/css/font-awesome.min.css">
-    </head>
+  <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
         <%@include file="unitedMenu.jsp" %>

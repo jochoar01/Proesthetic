@@ -38,21 +38,19 @@ public class ActualizarPedidos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             Controller.ConectaDB c = new Controller.ConectaDB();
-           HttpSession session = request.getSession();
-            
-            
+            HttpSession session = request.getSession();
+
 //            Controller.ConectaDB c = new Controller.ConectaDB();
-            String  usr = (String)session.getAttribute("rol");
-            if(usr.equalsIgnoreCase("SISTEMAS")){
-            c.setUsuario("SISTEMAS");
-            
-            c.setClave("4321");
+            String usr = (String) session.getAttribute("rol");
+            if (usr.equalsIgnoreCase("SISTEMAS")) {
+                c.setUsuario("SISTEMAS");
+
+                c.setClave("4321");
                 System.out.println(usr);
-            
+
             }
 //            
-            
-            
+
             Connection con = c.conectar();
             Statement stm = con.createStatement();
 
@@ -73,7 +71,11 @@ public class ActualizarPedidos extends HttpServlet {
             String query = "UPDATE `pedidos` SET `caja`='" + caja + "', `clinica`='" + clinica + "', `paciente`='" + paciente + "', `orden`='" + orden + "', `antagonista`='" + antagonista + "', `fecha_entrada`='" + fecha_entrada + "', `odontologo`='" + odontologo + "', `tipo_trabajo`='" + tipo_trabajo + "', `fecha_entrega`='" + fecha_entrega + "', `prueba1`='" + prueba1 + "', `prueba2`='" + prueba2 + "', `prueba3`='" + prueba3 + "' WHERE `idpedidos`='" + id + "';";
             // Ejecutamos Queey
             stm.executeUpdate(query);
-            
+            String sQuery = query.replace("'", "`");
+            String querylog = "insert into logs (fecha,rol,usuario,accion)values(now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";
+
+            stm.execute(querylog);
+
             stm.close();
             con.close();
             c.cierraConexion();
