@@ -62,10 +62,10 @@ public class TablaPedidos extends HttpServlet {
                 p.setPaciente    (rs.getString(4) );
                 p.setOrden       (rs.getString(5) );
                 p.setAntagonista (rs.getString(6) );
-                p.setFechaEntrada(rs.getDate(7) );
+                p.setFechaEntrada(rs.getString(7) );
                 p.setOdontologo  (rs.getString(8) );
                 p.setTipoTrabajo (rs.getString(9) );
-                p.setFechaEntrega(rs.getDate(10));
+                p.setFechaEntrega(rs.getString(10));
                 p.setPrueba1     (rs.getString(11));
                 p.setPrueba2     (rs.getString(12));
                 p.setPrueba3     (rs.getString(13));
