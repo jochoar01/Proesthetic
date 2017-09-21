@@ -23,20 +23,14 @@
                     <a class="dropdown-item" href="search-cajas.html">Cajas</a>
                     <a class="dropdown-item" href="search-procesos.html">Procesos</a>
                     <a class="dropdown-item" href="search-roles.html">Roles</a>
-                    <a class="dropdown-item" href="search-usuarios.html">Usuarios</a>
-                    <a id="TablasMenu" class="dropdown-item" href="Tablas.html">Tablas</a>
+                    <a class="dropdown-item" href="search-usuarios.html">Usuarios</a>                    
                     <a class="dropdown-item" href="search-tipotrabajo.html">Tipos de Trabajos</a>
                 </div>
             </li>
 
 
 
-            <li class="nav-item">
-                <a class="nav-link" href="BusquedaClinicas">Clinicas <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="BusquedaOdontologos">Odontologos <span class="sr-only">(current)</span></a>
-            </li>
+
 
 
             <li class="nav-item dropdown">
