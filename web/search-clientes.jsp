@@ -39,7 +39,7 @@
                         <td>
                             <a href="show-clientes.jsp?pos=<%= pos += 1%>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                             <a href="update-clientes.jsp?pos=<%= pos%>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                                <% if (objUsuario.getRol().equals("SISTEMAS")) {%>
+                                <% if (session.getAttribute("rol").equals("SISTEMAS")) {%>
                             <a href="EliminarClinicas?id=<%= obj.getIdClinicas()%>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                                 <% } %>
                         </td>
