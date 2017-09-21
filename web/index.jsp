@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
-                                <input type="password" class="form-control" id="psw" name="psw" placeholder="Ingresar Contraseña" value="admin">
+                                <input type="password" class="form-control" id="psw" name="psw" placeholder="Ingresar Contraseña">
                             </div>
                             <!--
                             <div class="checkbox">
