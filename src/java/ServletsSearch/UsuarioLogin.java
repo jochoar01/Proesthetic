@@ -49,38 +49,15 @@ public class UsuarioLogin extends HttpServlet {
             String user = (String) request.getParameter("usrname");
             String pass = (String) request.getParameter("psw");
 
-            ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `NombreUsuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0,1;");
+            ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `NombreUsuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0 , 1;");
 
             if (rs.next()) {
-
                 session.setAttribute("rol", rs.getString(4));
-
                 session.setAttribute("nombre", rs.getString(3));
                 System.out.println(rs.getString(3));
             }
 
-            if (rs.getString(4).equalsIgnoreCase("SISTEMAS")) {
-                response.sendRedirect("inicio.jsp");
-
-            } else {
-                if (rs.getString(4).equalsIgnoreCase("ADMINISTRADOR")) {
-                    response.sendRedirect("inicio.jsp");
-
-                } else {
-                    if (rs.getString(4).equalsIgnoreCase("COORDINADOR")) {
-                        response.sendRedirect("inicio.jsp");
-
-                    } else {
-                        if (rs.getString(4).equalsIgnoreCase("SECRETARIA")) {
-                            response.sendRedirect("inicio.jsp");
-
-                        }
-
-                    }
-
-                }
-
-            }
+            response.sendRedirect("inicio.jsp");
 
             stm.close();
             con.close();

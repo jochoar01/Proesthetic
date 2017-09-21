@@ -44,7 +44,7 @@
                         <td>
                             <a href="show-odontologos.jsp?id=<%= pos%>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                             <a href="update-odontologos.jsp?id=<%= pos%>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                                <% if (objUsuario.getRol().equals("SISTEMAS")) {%>
+                                <% if (session.getAttribute("rol").equals("SISTEMAS")) {%>
                             <a href="EliminarOdontologos?id=<%= obj.getIdOdontologos()%>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                                 <% } %>
                         </td>
