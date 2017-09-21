@@ -20,11 +20,11 @@
                     Configuración
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="search-cajas.html">Cajas</a>
-                    <a class="dropdown-item" href="search-procesos.html">Procesos</a>
-                    <a class="dropdown-item" href="search-roles.html">Roles</a>
-                    <a class="dropdown-item" href="search-usuarios.html">Usuarios</a>                    
-                    <a class="dropdown-item" href="search-tipotrabajo.html">Tipos de Trabajos</a>
+                    <a class="dropdown-item" href="search-cajas.jsp">Cajas</a>
+                    <a class="dropdown-item" href="search-procesos.jsp">Procesos</a>
+                    <a class="dropdown-item" href="search-roles.jsp">Roles</a>
+                    <a class="dropdown-item" href="search-usuarios.jsp">Usuarios</a>                    
+                    <a class="dropdown-item" href="search-tipotrabajo.jsp">Tipos de Trabajos</a>
                 </div>
             </li>
 
@@ -46,7 +46,7 @@
                     Administración
                 </a>
                 <div class="dropdown-menu">
-                    <a id="SedesMenu" class="dropdown-item" href="search-sedes.html">Sedes</a>
+                    <a id="SedesMenu" class="dropdown-item" href="search-sedes.jsp">Sedes</a>
                     <a id="SedesMenu" class="dropdown-item" href="BusquedaClinicas">Clinicas <span class="sr-only">(current)</span></a>
                     <a id="SedesMenu" class="dropdown-item" href="BusquedaOdontologos">Odontologos <span class="sr-only">(current)</span></a>
                 </div>
