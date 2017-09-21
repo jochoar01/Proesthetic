@@ -24,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author juan
  */
-@WebServlet(name = "ListarPedidos", urlPatterns = {"/ListarPedidos"})
-public class ListarPedidos extends HttpServlet {
+@WebServlet(name = "TablaPedidos", urlPatterns = {"/TablaPedidos"})
+public class TablaPedidos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +48,7 @@ public class ListarPedidos extends HttpServlet {
             ConectaDB c = new ConectaDB();
             Connection con = c.conectar();
             Statement stm = con.createStatement();
-            String query = "SELECT * FROM `pedidos` WHERE `Habilitado`='1';";
+            String query = "SELECT * FROM `pedidos`";
 //            String query2 ="SELECT * FROM `pedidos`;";
             ResultSet rs = stm.executeQuery(query);
 //            ResultSet rs2 = stm.executeQuery(query2);
@@ -75,31 +75,12 @@ public class ListarPedidos extends HttpServlet {
 
             session.setAttribute("Listar", ListarP);
 //            
-//              while (rs.next()) {
-//                Pedidos b = new Pedidos();
-//
-//                b.setIdpedidos   (rs.getInt(1)    );
-//                b.setCaja        (rs.getString(2) );
-//                b.setClinica     (rs.getString(3) );
-//                b.setPaciente    (rs.getString(4) );
-//                b.setOrden       (rs.getString(5) );
-//                b.setAntagonista (rs.getString(6) );
-//                b.setFechaEntrada(rs.getString(7) );
-//                b.setOdontologo  (rs.getString(8) );
-//                b.setTipoTrabajo (rs.getString(9) );
-//                b.setFechaEntrega(rs.getString(10));
-//                b.setPrueba1     (rs.getString(11));
-//                b.setPrueba2     (rs.getString(12));
-//                b.setPrueba3     (rs.getString(13));
-//                b.setHabilitado  (rs.getBoolean(14));
-//                Listarb.add(b);
-//            }
-//            session.setAttribute("Listarb", Listarb);
+//             
             stm.close();
             con.close();
             c.cierraConexion();
 
-            response.sendRedirect("search-pedidos.jsp");
+            response.sendRedirect("Tabla-pedidos.jsp");
         } catch (SQLException s) {
             System.out.println(s.getMessage());
         }

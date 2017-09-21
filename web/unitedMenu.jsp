@@ -53,7 +53,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <!--<a id="SedesMenu" class="dropdown-item" href="search-sedes.jsp">Sedes</a>-->
-                    <a class="dropdown-item" href="Tabla-pedidos.jsp">Pedidos</a>
+                    <a class="dropdown-item" href="TablaPedidos">Pedidos</a>
                     <a class="dropdown-item" href="Tabla-clinicas.jsp">Clinicas</a>
                     <a class="dropdown-item" href="Tabla-odontologos.jsp">Odontologos</a>
                 </div>

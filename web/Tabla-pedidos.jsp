@@ -47,12 +47,25 @@
                     </thead>
                     <tbody>
                           <%
+                              String hab,col;
                         try {
                             for (Pedidos l : Listar) {
                                 p = p + 1;
+                                
+                                
+                               if(l.getHabilitado()==true){
+                                hab="Habilitado";
+                                col="text-success";
+                               } else{
+                               
+                               hab="Inhabilitado";
+                               col="text-danger";
+                               }
+
+
                     %> 
                         <tr>
-                            <td>Pedido 1</td>
+                            <td><%=l.getIdpedidos()%></td>
                             <td><%=l.getCaja()%></td>
                             <td><%=l.getClinica()%></td>                           
                             <td><%=l.getPaciente()%></td>
@@ -65,7 +78,7 @@
                             <td><%=l.getPrueba1()%></td>
                             <td><%=l.getPrueba2()%></td>
                             <td><%=l.getPrueba3()%></td>
-                            <td class="text-success"><%=l.getHabilitado()%></td>
+                            <td class="<%=col%>"><%=hab%></td>
                             <td>
                                 
                                 <a href="update-pedidos.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
