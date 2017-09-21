@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Tabla DB de Pedidos</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/Styles.css">
-        <link rel="stylesheet" type="text/css" href="fonts/css/font-awesome.min.css">
-    </head>
+    <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
-    <%@include file="unitedMenu.jsp" %>
+        <%@include file="unitedMenu.jsp" %>
         <!-- Fixed navbar -->
         <div class="container-fluid">
             <div class="card top70">
