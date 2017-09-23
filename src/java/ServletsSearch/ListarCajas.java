@@ -66,6 +66,7 @@ public class ListarCajas extends HttpServlet {
             stm.close();
             cn.close();
             c.cierraConexion();
+            response.sendRedirect("search-cajas.jsp");
         } catch(SQLException e){
             System.out.println(e.getMessage());
         }

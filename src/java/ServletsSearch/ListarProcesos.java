@@ -67,6 +67,7 @@ public class ListarProcesos extends HttpServlet {
             stm.close();
             cn.close();
             c.cierraConexion();
+            response.sendRedirect("search-procesos.jsp");
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

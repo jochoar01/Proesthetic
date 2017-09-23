@@ -1,3 +1,7 @@
+<%@page import="Persistencias.Cajas"%>
+<%
+    ArrayList<Cajas> Listado = (ArrayList<Cajas>) session.getAttribute("ListarCajas");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -22,30 +26,26 @@
                     </tr>
                 </thead>
                 <tbody>
+<%
+try {
+    Integer i = -1;
+    for (Cajas obj : Listado) {
+        i += 1;
+        %>
                     <tr>
-                        <td>1</td>
-                        <td>Caja A1</td>
-                        <td class="text-success">Activo</td>
+                        <td><%= obj.getIdcajas() %></td>
+                        <td><%= obj.getCaja()%></td>
+                        <td class="text-success">Habilitado</td>
                         <td>
-                            <a href="update-cajas.html" class="btn btn-warning fa fa-pencil"></a>
+                            <a href="update-cajas.jsp?site=<%= i %>" class="btn btn-warning fa fa-pencil"></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Caja A2</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-cajas.html" class="btn btn-warning fa fa-pencil"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Caja A3</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-cajas.html" class="btn btn-warning fa fa-pencil"></a>
-                        </td>
-                    </tr>
+        <%
+    }
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+%>
                 </tbody>
             </table>
         </div>
