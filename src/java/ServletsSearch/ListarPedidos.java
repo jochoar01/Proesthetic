@@ -6,7 +6,11 @@
 package ServletsSearch;
 
 import Controller.ConectaDB;
+import Persistencias.Cajas;
+import Persistencias.Odontologos;
 import Persistencias.Pedidos;
+import Persistencias.Procesos;
+import Persistencias.Sedes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -54,22 +58,34 @@ public class ListarPedidos extends HttpServlet {
 //            ResultSet rs2 = stm.executeQuery(query2);
 
             while (rs.next()) {
+                Cajas cj = new Cajas();
+                Sedes sd = new Sedes();
                 Pedidos p = new Pedidos();
-
-                p.setIdpedidos   (rs.getInt(1)    );
-                p.setCaja        (rs.getString(2) );
-                p.setClinica     (rs.getString(3) );
-                p.setPaciente    (rs.getString(4) );
-                p.setOrden       (rs.getString(5) );
-                p.setAntagonista (rs.getString(6) );
-                p.setFechaEntrada(rs.getString(7) );
-                p.setOdontologo  (rs.getString(8) );
-                p.setTipoTrabajo (rs.getString(9) );
-                p.setFechaEntrega(rs.getString(10));
-                p.setPrueba1     (rs.getString(11));
-                p.setPrueba2     (rs.getString(12));
-                p.setPrueba3     (rs.getString(13));
-                p.setHabilitado  (rs.getBoolean(14));
+                Odontologos od = new Odontologos();
+                Procesos p1 = new Procesos();
+                Procesos p2 = new Procesos();
+                Procesos p3 = new Procesos();
+                
+                p.setIdpedidos(rs.getInt(1));
+                cj.setIdcajas(rs.getInt(2));
+                p.setCaja(cj);
+                sd.setIdsede(rs.getInt(3));
+                p.setClinica(sd);
+                p.setPaciente(rs.getString(4));
+                p.setOrden(rs.getString(5));
+                p.setAntagonista(rs.getString(6));
+                p.setFechaEntrada(rs.getDate(7));
+                od.setIdOdontologos(rs.getInt(8));
+                p.setOdontologoid(od);
+                p.setTipoTrabajo(rs.getString(9));
+                p.setFechaEntrega(rs.getDate(10));
+                p1.setIdprocesos(rs.getInt(11));
+                p.setPrueba1(p1);
+                p2.setIdprocesos(rs.getInt(12));
+                p.setPrueba2(p2);
+                p3.setIdprocesos(rs.getInt(13));
+                p.setPrueba3(p3);
+                p.setHabilitado(rs.getBoolean(14));
                 ListarP.add(p);
             }
 

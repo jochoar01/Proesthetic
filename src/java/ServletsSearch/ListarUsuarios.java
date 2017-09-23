@@ -6,11 +6,14 @@
 package ServletsSearch;
 
 import Controller.ConectaDB;
+import Persistencias.Roles;
+import Persistencias.Usuarios;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +23,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Daniel Lopez
+ * @author Daniels
  */
-@WebServlet(name = "UsuarioLogin", urlPatterns = {"/UsuarioLogin"})
-public class UsuarioLogin extends HttpServlet {
+@WebServlet(name = "ListarUsuarios", urlPatterns = {"/ListarUsuarios"})
+public class ListarUsuarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,36 +40,39 @@ public class UsuarioLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        HttpSession session = request.getSession(true);
-
+        
         try {
-            //Instanciamos las conexiones
+            // Instanciación de clases
+            HttpSession session = request.getSession();
+            ArrayList<Usuarios> ListUsuarios = new ArrayList();
             ConectaDB c = new ConectaDB();
-            Connection con = c.conectar();
-            Statement stm = con.createStatement();
-            //Obtenemos parametros del formulario
-            String user = (String) request.getParameter("usrname");
-            String pass = (String) request.getParameter("psw");
-            //Realizamos consulta para verificar si el usuario existe
-            ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `NombreUsuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0 , 1;");
-            //Verificamos y obtenemos datos de la consulta
-            if (rs.next()) {
-                session.setAttribute("rol", rs.getString(4));
-                session.setAttribute("nombre", rs.getString(3));
-                //System.out.println(rs.getString(3));
-            }
-            //Cerramos concexiones
-            stm.close();
-            con.close();
-            c.cierraConexion();
-            
-            //Vamos al inicio
-            response.sendRedirect("inicio.jsp");
-            //Cerramos las conexiones
-        } catch (SQLException e) {
+            Connection cn = c.conectar();
+            Statement stm = cn.createStatement();
+            // Ejecutar busqueda de cajas
+            String sql = "SELECT * FROM `usuarios` WHERE `Habilitado`='1';";
+            ResultSet rs = stm.executeQuery(sql);
+                while (rs.next()) {
+                    // Creamos contenedor de datos
+                    Usuarios usuario = new Usuarios();
+                    Roles rol = new Roles();
+                    // Obtenemos y guardamos los datos de la consulta
+                    usuario.setIdUsuarios(rs.getInt(1));
+                    usuario.setNombreUsuario(rs.getString(2));
+                    usuario.setNombre(rs.getString(3));
+                    usuario.setRol(rs.getString(4));
+                    usuario.setPassword(rs.getString(5));
+                    usuario.setHabilitado(rs.getBoolean(6));
+                    rol.setIdrol(rs.getInt(7));
+                    usuario.setRolId(rol);
+                    //Agregamos contenedor a array en sesión
+                    ListUsuarios.add(usuario);
+                }
+            // Guardar datos en la sessión del servidor
+            session.setAttribute("ListarUsuarios", ListUsuarios);
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

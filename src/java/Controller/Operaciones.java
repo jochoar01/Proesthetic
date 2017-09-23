@@ -15,12 +15,6 @@ import java.sql.Statement;
  * @author sena
  */
 public class Operaciones {
-
-    
-    
-    
-     
-
     public String validarUsuario(String u, String p) {
         String existe = "";
         try {
@@ -38,10 +32,10 @@ public class Operaciones {
             } 
             stm.close();
             con.close();
-             c.cierraConexion();
+            c.cierraConexion();
 
         } catch (SQLException s) {
-            s.printStackTrace();
+            System.out.println(s.getMessage());
         }
         return existe;  
         

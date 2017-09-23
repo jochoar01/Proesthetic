@@ -6,11 +6,13 @@
 package ServletsSearch;
 
 import Controller.ConectaDB;
+import Persistencias.Cajas;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +22,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Daniel Lopez
+ * @author Daniels
  */
-@WebServlet(name = "UsuarioLogin", urlPatterns = {"/UsuarioLogin"})
-public class UsuarioLogin extends HttpServlet {
+@WebServlet(name = "ListarCajas", urlPatterns = {"/ListarCajas"})
+public class ListarCajas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,34 +39,30 @@ public class UsuarioLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        HttpSession session = request.getSession(true);
-
         try {
-            //Instanciamos las conexiones
-            ConectaDB c = new ConectaDB();
-            Connection con = c.conectar();
-            Statement stm = con.createStatement();
-            //Obtenemos parametros del formulario
-            String user = (String) request.getParameter("usrname");
-            String pass = (String) request.getParameter("psw");
-            //Realizamos consulta para verificar si el usuario existe
-            ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `NombreUsuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0 , 1;");
-            //Verificamos y obtenemos datos de la consulta
-            if (rs.next()) {
-                session.setAttribute("rol", rs.getString(4));
-                session.setAttribute("nombre", rs.getString(3));
-                //System.out.println(rs.getString(3));
+        // Instanciación de clases
+        HttpSession session = request.getSession();
+        ArrayList<Cajas> ListCajas = new ArrayList();
+        ConectaDB c = new ConectaDB();
+        Connection cn = c.conectar();
+        Statement stm = cn.createStatement();
+        // Ejecutar busqueda de cajas
+        String sql = "SELECT * FROM `cajas` WHERE `Habilitado` = '1';";
+        ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {                
+                // Creamos contenedor de datos
+                Cajas caja = new Cajas();
+                // Obtenemos y guardamos los datos de la consulta
+                caja.setIdcajas(rs.getInt(1));
+                caja.setCaja(rs.getString(2));
+                caja.setCajascol1(rs.getString(3));
+                caja.setHabilitado(rs.getBoolean(4));
+                //Agregamos contenedor a array en sesión
+                ListCajas.add(caja);
             }
-            //Cerramos concexiones
-            stm.close();
-            con.close();
-            c.cierraConexion();
-            
-            //Vamos al inicio
-            response.sendRedirect("inicio.jsp");
-            //Cerramos las conexiones
-        } catch (SQLException e) {
+        // Guardar datos en la sessión del servidor
+        session.setAttribute("ListarCajas", ListCajas);
+        } catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
