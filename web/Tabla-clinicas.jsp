@@ -106,12 +106,7 @@
             </div>
         </div>
         <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <span class="text-muted">ProEsthetic SAS.</span>
-                <small class="float-right"><b>Desarrollado por:</b> J.D.P.</small>
-            </div>
-        </footer>
+        <%@include file="unitedFooter.jsp" %>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/tether.min.js"></script>

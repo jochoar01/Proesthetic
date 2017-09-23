@@ -9,7 +9,7 @@
             <div class="card top70">
                 <div class="card-header">
                     <h3 class="float-left">Tabla de Odontologos</h3>
-                    <a href="create-odontologos.html" class="btn btn-success fa fa-plus float-right"></a>
+                    <a href="create-odontologos.jsp" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -64,12 +64,7 @@
             </div>
         </div>
         <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <span class="text-muted">ProEsthetic SAS.</span>
-                <small class="float-right"><b>Desarrollado por:</b> J.D.P.</small>
-            </div>
-        </footer>
+        <%@include file="unitedFooter.jsp" %>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/tether.min.js"></script>
