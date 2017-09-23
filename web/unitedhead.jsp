@@ -9,4 +9,5 @@
     <!-- Custom CSS -->
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/Styles.css" rel="stylesheet" type="text/css">
+    <link href="media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>

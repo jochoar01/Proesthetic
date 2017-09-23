@@ -37,7 +37,7 @@
                         <td><%=l.getCaja()%></td>
                         <td><%=l.getTipoTrabajo()%></td>
                         <td><%=l.getPaciente()%></td>
-                        <td><%=l.getOdontologo()%></td>
+                        <td><%=l.getOdontologoid()%></td>
                         <td>
                             <% if (session.getAttribute("rol").equals("SISTEMAS")
                                         || session.getAttribute("rol").equals("ADMINISTRADOR")

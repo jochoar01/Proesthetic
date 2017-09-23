@@ -16,19 +16,13 @@
                     Configuración
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="search-cajas.jsp">Cajas</a>
-                    <a class="dropdown-item" href="search-procesos.jsp">Procesos</a>
-                    <a class="dropdown-item" href="search-roles.jsp">Roles</a>
-                    <a class="dropdown-item" href="search-usuarios.jsp">Usuarios</a>                    
-                    <a class="dropdown-item" href="search-tipotrabajo.jsp">Tipos de Trabajos</a>
+                    <a class="dropdown-item" href="ListarCajas">Cajas</a>
+                    <a class="dropdown-item" href="ListarProcesos">Procesos</a>
+                    <a class="dropdown-item" href="ListarRoles">Roles</a>
+                    <a class="dropdown-item" href="ListarUsuarios">Usuarios</a>                    
+                    <!--<a class="dropdown-item" href="search-tipotrabajo.jsp">Tipos de Trabajos</a>-->
                 </div>
             </li>
-
-
-
-
-
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Facturación
@@ -42,7 +36,7 @@
                     Administración
                 </a>
                 <div class="dropdown-menu">
-                    <a id="SedesMenu" class="dropdown-item" href="search-sedes.jsp">Sedes</a>
+                    <a id="SedesMenu" class="dropdown-item" href="ListarSedes">Sedes</a>
                     <a id="SedesMenu" class="dropdown-item" href="BusquedaClinicas">Clinicas <span class="sr-only">(current)</span></a>
                     <a id="SedesMenu" class="dropdown-item" href="BusquedaOdontologos">Odontologos <span class="sr-only">(current)</span></a>
                 </div>
@@ -54,8 +48,14 @@
                 </a>
                 <div class="dropdown-menu">
                     <!--<a id="SedesMenu" class="dropdown-item" href="search-sedes.jsp">Sedes</a>-->
+                    <a class="dropdown-item" href="#">Logs</a>
+                    <a class="dropdown-item" href="#">Cajas</a>
+                    <a class="dropdown-item" href="#">Roles</a>
+                    <a class="dropdown-item" href="#">Usuarios</a>
+                    <a class="dropdown-item" href="#">Procesos</a>
                     <a class="dropdown-item" href="TablaPedidos">Pedidos</a>
                     <a class="dropdown-item" href="Tabla-clinicas.jsp">Clinicas</a>
+                    <a class="dropdown-item" href="#">Sedes</a>
                     <a class="dropdown-item" href="Tabla-odontologos.jsp">Odontologos</a>
                 </div>
             </li>

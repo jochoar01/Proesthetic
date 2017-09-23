@@ -63,6 +63,10 @@ public class ListarProcesos extends HttpServlet {
                 }
             // Guardar datos en la sessión del servidor
             session.setAttribute("Listarprocesos", ListProcess);
+            //Cerramos concexiones
+            stm.close();
+            cn.close();
+            c.cierraConexion();
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

@@ -62,6 +62,10 @@ public class ListarRoles extends HttpServlet {
                 }
             // Guardar datos en la sessión del servidor
             session.setAttribute("ListarRoles", ListRoles);
+            //Cerramos concexiones
+            stm.close();
+            cn.close();
+            c.cierraConexion();
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

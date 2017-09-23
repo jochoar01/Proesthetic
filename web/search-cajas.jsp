@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Listado de Cajas</h3>
-                    <a href="create-cajas.html" class="btn btn-success fa fa-plus float-right"></a>
+                    <a href="create-cajas.jsp" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">
