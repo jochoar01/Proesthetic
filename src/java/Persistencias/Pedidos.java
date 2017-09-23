@@ -6,21 +6,25 @@
 package Persistencias;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author juan
+ * @author Daniels
  */
 @Entity
 @Table(name = "pedidos")
@@ -28,18 +32,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pedidos.findAll", query = "SELECT p FROM Pedidos p")
     , @NamedQuery(name = "Pedidos.findByIdpedidos", query = "SELECT p FROM Pedidos p WHERE p.idpedidos = :idpedidos")
-    , @NamedQuery(name = "Pedidos.findByCaja", query = "SELECT p FROM Pedidos p WHERE p.caja = :caja")
-    , @NamedQuery(name = "Pedidos.findByClinica", query = "SELECT p FROM Pedidos p WHERE p.clinica = :clinica")
     , @NamedQuery(name = "Pedidos.findByPaciente", query = "SELECT p FROM Pedidos p WHERE p.paciente = :paciente")
     , @NamedQuery(name = "Pedidos.findByOrden", query = "SELECT p FROM Pedidos p WHERE p.orden = :orden")
     , @NamedQuery(name = "Pedidos.findByAntagonista", query = "SELECT p FROM Pedidos p WHERE p.antagonista = :antagonista")
     , @NamedQuery(name = "Pedidos.findByFechaEntrada", query = "SELECT p FROM Pedidos p WHERE p.fechaEntrada = :fechaEntrada")
-    , @NamedQuery(name = "Pedidos.findByOdontologo", query = "SELECT p FROM Pedidos p WHERE p.odontologo = :odontologo")
     , @NamedQuery(name = "Pedidos.findByTipoTrabajo", query = "SELECT p FROM Pedidos p WHERE p.tipoTrabajo = :tipoTrabajo")
     , @NamedQuery(name = "Pedidos.findByFechaEntrega", query = "SELECT p FROM Pedidos p WHERE p.fechaEntrega = :fechaEntrega")
-    , @NamedQuery(name = "Pedidos.findByPrueba1", query = "SELECT p FROM Pedidos p WHERE p.prueba1 = :prueba1")
-    , @NamedQuery(name = "Pedidos.findByPrueba2", query = "SELECT p FROM Pedidos p WHERE p.prueba2 = :prueba2")
-    , @NamedQuery(name = "Pedidos.findByPrueba3", query = "SELECT p FROM Pedidos p WHERE p.prueba3 = :prueba3")
     , @NamedQuery(name = "Pedidos.findByHabilitado", query = "SELECT p FROM Pedidos p WHERE p.habilitado = :habilitado")})
 public class Pedidos implements Serializable {
 
@@ -49,44 +47,40 @@ public class Pedidos implements Serializable {
     @Basic(optional = false)
     @Column(name = "idpedidos")
     private Integer idpedidos;
-    @Size(max = 45)
-    @Column(name = "caja")
-    private String caja;
-    @Size(max = 45)
-    @Column(name = "clinica")
-    private String clinica;
-    @Size(max = 45)
     @Column(name = "paciente")
     private String paciente;
-    @Size(max = 45)
     @Column(name = "orden")
     private String orden;
-    @Size(max = 45)
     @Column(name = "antagonista")
     private String antagonista;
-    @Size(max = 45)
     @Column(name = "fecha_entrada")
-    private String fechaEntrada;
-    @Size(max = 45)
-    @Column(name = "odontologo")
-    private String odontologo;
-    @Size(max = 45)
+    @Temporal(TemporalType.DATE)
+    private Date fechaEntrada;
     @Column(name = "tipo_trabajo")
     private String tipoTrabajo;
-    @Size(max = 45)
     @Column(name = "fecha_entrega")
-    private String fechaEntrega;
-    @Size(max = 45)
-    @Column(name = "prueba1")
-    private String prueba1;
-    @Size(max = 45)
-    @Column(name = "prueba2")
-    private String prueba2;
-    @Size(max = 45)
-    @Column(name = "prueba3")
-    private String prueba3;
+    @Temporal(TemporalType.DATE)
+    private Date fechaEntrega;
     @Column(name = "Habilitado")
     private Boolean habilitado;
+    @JoinColumn(name = "prueba1", referencedColumnName = "idprocesos")
+    @ManyToOne
+    private Procesos prueba1;
+    @JoinColumn(name = "prueba2", referencedColumnName = "idprocesos")
+    @ManyToOne
+    private Procesos prueba2;
+    @JoinColumn(name = "prueba3", referencedColumnName = "idprocesos")
+    @ManyToOne
+    private Procesos prueba3;
+    @JoinColumn(name = "odontologoid", referencedColumnName = "idOdontologos")
+    @ManyToOne
+    private Odontologos odontologoid;
+    @JoinColumn(name = "caja", referencedColumnName = "idcajas")
+    @ManyToOne
+    private Cajas caja;
+    @JoinColumn(name = "clinica", referencedColumnName = "idsede")
+    @ManyToOne
+    private Sedes clinica;
 
     public Pedidos() {
     }
@@ -101,22 +95,6 @@ public class Pedidos implements Serializable {
 
     public void setIdpedidos(Integer idpedidos) {
         this.idpedidos = idpedidos;
-    }
-
-    public String getCaja() {
-        return caja;
-    }
-
-    public void setCaja(String caja) {
-        this.caja = caja;
-    }
-
-    public String getClinica() {
-        return clinica;
-    }
-
-    public void setClinica(String clinica) {
-        this.clinica = clinica;
     }
 
     public String getPaciente() {
@@ -143,20 +121,12 @@ public class Pedidos implements Serializable {
         this.antagonista = antagonista;
     }
 
-    public String getFechaEntrada() {
+    public Date getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(String fechaEntrada) {
+    public void setFechaEntrada(Date fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
-    }
-
-    public String getOdontologo() {
-        return odontologo;
-    }
-
-    public void setOdontologo(String odontologo) {
-        this.odontologo = odontologo;
     }
 
     public String getTipoTrabajo() {
@@ -167,36 +137,12 @@ public class Pedidos implements Serializable {
         this.tipoTrabajo = tipoTrabajo;
     }
 
-    public String getFechaEntrega() {
+    public Date getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(String fechaEntrega) {
+    public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
-    }
-
-    public String getPrueba1() {
-        return prueba1;
-    }
-
-    public void setPrueba1(String prueba1) {
-        this.prueba1 = prueba1;
-    }
-
-    public String getPrueba2() {
-        return prueba2;
-    }
-
-    public void setPrueba2(String prueba2) {
-        this.prueba2 = prueba2;
-    }
-
-    public String getPrueba3() {
-        return prueba3;
-    }
-
-    public void setPrueba3(String prueba3) {
-        this.prueba3 = prueba3;
     }
 
     public Boolean getHabilitado() {
@@ -205,6 +151,54 @@ public class Pedidos implements Serializable {
 
     public void setHabilitado(Boolean habilitado) {
         this.habilitado = habilitado;
+    }
+
+    public Procesos getPrueba1() {
+        return prueba1;
+    }
+
+    public void setPrueba1(Procesos prueba1) {
+        this.prueba1 = prueba1;
+    }
+
+    public Procesos getPrueba2() {
+        return prueba2;
+    }
+
+    public void setPrueba2(Procesos prueba2) {
+        this.prueba2 = prueba2;
+    }
+
+    public Procesos getPrueba3() {
+        return prueba3;
+    }
+
+    public void setPrueba3(Procesos prueba3) {
+        this.prueba3 = prueba3;
+    }
+
+    public Odontologos getOdontologoid() {
+        return odontologoid;
+    }
+
+    public void setOdontologoid(Odontologos odontologoid) {
+        this.odontologoid = odontologoid;
+    }
+
+    public Cajas getCaja() {
+        return caja;
+    }
+
+    public void setCaja(Cajas caja) {
+        this.caja = caja;
+    }
+
+    public Sedes getClinica() {
+        return clinica;
+    }
+
+    public void setClinica(Sedes clinica) {
+        this.clinica = clinica;
     }
 
     @Override

@@ -23,17 +23,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Daniel Lopez
+ * @author Daniels
  */
 @Entity
 @Table(name = "logs")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Logs.findAll", query = "SELECT l FROM Logs l"),
-    @NamedQuery(name = "Logs.findByIdlog", query = "SELECT l FROM Logs l WHERE l.idlog = :idlog"),
-    @NamedQuery(name = "Logs.findByFecha", query = "SELECT l FROM Logs l WHERE l.fecha = :fecha"),
-    @NamedQuery(name = "Logs.findByRol", query = "SELECT l FROM Logs l WHERE l.rol = :rol"),
-    @NamedQuery(name = "Logs.findByUsuario", query = "SELECT l FROM Logs l WHERE l.usuario = :usuario")})
+    @NamedQuery(name = "Logs.findAll", query = "SELECT l FROM Logs l")
+    , @NamedQuery(name = "Logs.findByIdlog", query = "SELECT l FROM Logs l WHERE l.idlog = :idlog")
+    , @NamedQuery(name = "Logs.findByFecha", query = "SELECT l FROM Logs l WHERE l.fecha = :fecha")
+    , @NamedQuery(name = "Logs.findByRol", query = "SELECT l FROM Logs l WHERE l.rol = :rol")
+    , @NamedQuery(name = "Logs.findByUsuario", query = "SELECT l FROM Logs l WHERE l.usuario = :usuario")})
 public class Logs implements Serializable {
 
     private static final long serialVersionUID = 1L;

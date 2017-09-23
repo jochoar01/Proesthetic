@@ -2,6 +2,21 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="EjercicioBASEVideoClubPU" transaction-type="JTA">
     <jta-data-source>java:app/RRHH</jta-data-source>
+    <class>Persistencias.Roles</class>
+    <class>Persistencias.Sedes</class>
+    <class>Persistencias.Procesos</class>
+    <class>Persistencias.Usuarios_1</class>
+    <class>Persistencias.Logs_1</class>
+    <class>Persistencias.Pedidos_1</class>
+    <class>Persistencias.Odontologos_1</class>
+    <class>Persistencias.Clinicas_1</class>
+    <class>Persistencias.Cajas_1</class>
+    <class>Persistencias.Cajas</class>
+    <class>Persistencias.Odontologos</class>
+    <class>Persistencias.Pedidos</class>
+    <class>Persistencias.Usuarios</class>
+    <class>Persistencias.Clinicas</class>
+    <class>Persistencias.Logs</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

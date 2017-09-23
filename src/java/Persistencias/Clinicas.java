@@ -6,6 +6,7 @@
 package Persistencias;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,12 +15,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Daniel Lopez
+ * @author Daniels
  */
 @Entity
 @Table(name = "clinicas")
@@ -50,6 +53,8 @@ public class Clinicas implements Serializable {
     private String telefonoClinica;
     @Column(name = "Habilitado")
     private Boolean habilitado;
+    @OneToMany(mappedBy = "clinica")
+    private Collection<Sedes> sedesCollection;
 
     public Clinicas() {
     }
@@ -104,6 +109,15 @@ public class Clinicas implements Serializable {
 
     public void setHabilitado(Boolean habilitado) {
         this.habilitado = habilitado;
+    }
+
+    @XmlTransient
+    public Collection<Sedes> getSedesCollection() {
+        return sedesCollection;
+    }
+
+    public void setSedesCollection(Collection<Sedes> sedesCollection) {
+        this.sedesCollection = sedesCollection;
     }
 
     @Override

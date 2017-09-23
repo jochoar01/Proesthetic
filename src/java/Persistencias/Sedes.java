@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,60 +27,52 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Daniels
  */
 @Entity
-@Table(name = "cajas")
+@Table(name = "sedes")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cajas.findAll", query = "SELECT c FROM Cajas c")
-    , @NamedQuery(name = "Cajas.findByIdcajas", query = "SELECT c FROM Cajas c WHERE c.idcajas = :idcajas")
-    , @NamedQuery(name = "Cajas.findByCaja", query = "SELECT c FROM Cajas c WHERE c.caja = :caja")
-    , @NamedQuery(name = "Cajas.findByCajascol1", query = "SELECT c FROM Cajas c WHERE c.cajascol1 = :cajascol1")
-    , @NamedQuery(name = "Cajas.findByHabilitado", query = "SELECT c FROM Cajas c WHERE c.habilitado = :habilitado")})
-public class Cajas implements Serializable {
+    @NamedQuery(name = "Sedes.findAll", query = "SELECT s FROM Sedes s")
+    , @NamedQuery(name = "Sedes.findByIdsede", query = "SELECT s FROM Sedes s WHERE s.idsede = :idsede")
+    , @NamedQuery(name = "Sedes.findBySede", query = "SELECT s FROM Sedes s WHERE s.sede = :sede")
+    , @NamedQuery(name = "Sedes.findByHabilitado", query = "SELECT s FROM Sedes s WHERE s.habilitado = :habilitado")})
+public class Sedes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idcajas")
-    private Integer idcajas;
-    @Column(name = "caja")
-    private String caja;
-    @Column(name = "cajascol1")
-    private String cajascol1;
+    @Column(name = "idsede")
+    private Integer idsede;
+    @Column(name = "sede")
+    private String sede;
     @Column(name = "Habilitado")
     private Boolean habilitado;
-    @OneToMany(mappedBy = "caja")
+    @JoinColumn(name = "clinica", referencedColumnName = "idClinicas")
+    @ManyToOne
+    private Clinicas clinica;
+    @OneToMany(mappedBy = "clinica")
     private Collection<Pedidos> pedidosCollection;
 
-    public Cajas() {
+    public Sedes() {
     }
 
-    public Cajas(Integer idcajas) {
-        this.idcajas = idcajas;
+    public Sedes(Integer idsede) {
+        this.idsede = idsede;
     }
 
-    public Integer getIdcajas() {
-        return idcajas;
+    public Integer getIdsede() {
+        return idsede;
     }
 
-    public void setIdcajas(Integer idcajas) {
-        this.idcajas = idcajas;
+    public void setIdsede(Integer idsede) {
+        this.idsede = idsede;
     }
 
-    public String getCaja() {
-        return caja;
+    public String getSede() {
+        return sede;
     }
 
-    public void setCaja(String caja) {
-        this.caja = caja;
-    }
-
-    public String getCajascol1() {
-        return cajascol1;
-    }
-
-    public void setCajascol1(String cajascol1) {
-        this.cajascol1 = cajascol1;
+    public void setSede(String sede) {
+        this.sede = sede;
     }
 
     public Boolean getHabilitado() {
@@ -87,6 +81,14 @@ public class Cajas implements Serializable {
 
     public void setHabilitado(Boolean habilitado) {
         this.habilitado = habilitado;
+    }
+
+    public Clinicas getClinica() {
+        return clinica;
+    }
+
+    public void setClinica(Clinicas clinica) {
+        this.clinica = clinica;
     }
 
     @XmlTransient
@@ -101,18 +103,18 @@ public class Cajas implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcajas != null ? idcajas.hashCode() : 0);
+        hash += (idsede != null ? idsede.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cajas)) {
+        if (!(object instanceof Sedes)) {
             return false;
         }
-        Cajas other = (Cajas) object;
-        if ((this.idcajas == null && other.idcajas != null) || (this.idcajas != null && !this.idcajas.equals(other.idcajas))) {
+        Sedes other = (Sedes) object;
+        if ((this.idsede == null && other.idsede != null) || (this.idsede != null && !this.idsede.equals(other.idsede))) {
             return false;
         }
         return true;
@@ -120,7 +122,7 @@ public class Cajas implements Serializable {
 
     @Override
     public String toString() {
-        return "Persistencias.Cajas[ idcajas=" + idcajas + " ]";
+        return "Persistencias.Sedes[ idsede=" + idsede + " ]";
     }
     
 }

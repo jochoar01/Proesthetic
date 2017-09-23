@@ -6,6 +6,7 @@
 package Persistencias;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,12 +15,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Daniel Lopez
+ * @author Daniels
  */
 @Entity
 @Table(name = "odontologos")
@@ -47,6 +50,8 @@ public class Odontologos implements Serializable {
     private String emailOdontologo;
     @Column(name = "Habilitado")
     private Boolean habilitado;
+    @OneToMany(mappedBy = "odontologoid")
+    private Collection<Pedidos> pedidosCollection;
 
     public Odontologos() {
     }
@@ -93,6 +98,15 @@ public class Odontologos implements Serializable {
 
     public void setHabilitado(Boolean habilitado) {
         this.habilitado = habilitado;
+    }
+
+    @XmlTransient
+    public Collection<Pedidos> getPedidosCollection() {
+        return pedidosCollection;
+    }
+
+    public void setPedidosCollection(Collection<Pedidos> pedidosCollection) {
+        this.pedidosCollection = pedidosCollection;
     }
 
     @Override
