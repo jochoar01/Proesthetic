@@ -33,6 +33,8 @@ public class create_sedes extends HttpServlet {
 
             
             String query = "INSERT INTO `sedes`(`sede`,`clinica`,`Habilitado`)VALUES('"+nombre+"','"+clinica+"',"+true+");";
+            System.out.println(query);
+                    
             stm.execute(query);
             String sQuery = query.replace("'", "`");
             String querylog = "insert into logs (fecha,rol,usuario,accion)values(now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";

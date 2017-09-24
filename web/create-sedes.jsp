@@ -9,7 +9,7 @@
             <h2>Creacion de Sedes</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo" action="Create_Sedes">
+                <form method="post" class="completo" action="create_sedes">
                     <div class="form-group" style="display:none;">
                         <label>Id Sede</label>
                         <input type="text" class="form-control" placeholder="Numero Id de la Sede." readonly>
@@ -24,7 +24,7 @@
                         <label>Clinica / Cliente</label>
                         <select name="clinica" class="form-control">
                             <option value="1">Proesthetic</option>
-                            <option value="2">Sonría</option>
+                            <option value="2">Sonria</option>
                             <option value="3">Dentisalud</option>
                         </select>
                     </div>
