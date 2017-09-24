@@ -88,15 +88,17 @@ CREATE TABLE IF NOT EXISTS `Proesthetic`.`roles` (
 -- Table `Proesthetic`.`usuarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Proesthetic`.`usuarios` (
-  `idUsuarios` INT(11),
+  `idUsuarios` INT(11) AUTO_INCREMENT,
   `NombreUsuario` VARCHAR(45),
-  `Nombre` VARCHAR(45),
-  `Rol` VARCHAR(45),
+  `Cedula` VARCHAR(45),
+  `Usuario` VARCHAR(45),
   `Password` VARCHAR(45),
-  `Habilitado` TINYINT(1),
   `rol_id` INT(11),
+  `Habilitado` TINYINT(1),  
   PRIMARY KEY (`idUsuarios`),
   FOREIGN KEY (`rol_id`) REFERENCES `Proesthetic`.`roles` (`idrol`));
+
+
 
 
 -- -----------------------------------------------------

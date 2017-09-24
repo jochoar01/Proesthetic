@@ -9,7 +9,7 @@
             <h2>Creación de Usuarios</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo">
+                <form method="post" class="completo"  action="create_usuarios">
                     <div class="form-group" style="display:none;">
                         <label>Id Usuario</label>
                         <input type="text" name="id" class="form-control" placeholder="Número Id del usuario" readonly>
@@ -22,7 +22,7 @@
                      <!-- End Division -->
                     <div class="form-group">
                         <label>Cedula</label>
-                        <input type="text" name="Cedula" class="form-control" placeholder="Cédula" autofocus>
+                        <input type="text" name="Cedula" class="form-control" placeholder="Cedula" autofocus>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
@@ -31,20 +31,19 @@
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
-                        <label>Contraseña</label>
-                        <input type="password" name="contrasena" class="form-control" placeholder="Contraseña">
+                        <label>Contrase�a</label>
+                        <input type="password" name="contrasena" class="form-control" placeholder="Contrase�a">
                     </div>
                      <!-- End Division -->
                     <div class="form-group">
-                        <label>Confirmar contraseña</label>
-                        <input type="password" name="contrasena" class="form-control" placeholder="Confirmar contraseña">
+                        <label>Confirmar contrase�a</label>
+                        <input type="password" name="contrasena" class="form-control" placeholder="Confirmar contrase�a">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Rol de Usuario</label>
                         <select name="rol" class="form-control">
-                            <option value="">Seleccine...</option>
-                            <option value="1">Gerente</option>
+                            <option value="1">SISTEMAS</option>
                             <option value="2">Administrador del sistema</option>
                             <option value="3">Administrador</option>
                         </select>

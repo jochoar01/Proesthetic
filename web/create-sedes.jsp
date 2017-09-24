@@ -6,18 +6,18 @@
         <%@include file="unitedMenu.jsp" %>
         <!-- Begin page content -->
         <div class="container">
-            <h2>Creación de Sedes</h2>
+            <h2>Creacion de Sedes</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo">
+                <form method="post" class="completo" action="Create_Sedes">
                     <div class="form-group" style="display:none;">
                         <label>Id Sede</label>
-                        <input type="text" class="form-control" placeholder="Número Id de la Sede." readonly>
+                        <input type="text" class="form-control" placeholder="Numero Id de la Sede." readonly>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Nombre Sede</label>
-                        <input type="text" class="form-control" placeholder="Nombre de la Sede." autofocus>
+                        <input type="text" name="nombre"  class="form-control" placeholder="Nombre de la Sede." autofocus>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">

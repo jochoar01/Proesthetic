@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Listado de Usuarios</h3>
-                    <a href="create-usuarios.html" class="btn btn-success fa fa-plus float-right"></a>
+                    <a href="create-usuarios.jsp" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">

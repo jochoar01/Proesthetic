@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "create_roles", urlPatterns = {"/create_roles"})
-public class create_roles extends HttpServlet {
+@WebServlet(name = "create_sedes", urlPatterns = {"/create_sedes"})
+public class create_sedes extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -28,12 +28,11 @@ public class create_roles extends HttpServlet {
             Statement stm = con.createStatement();
 //            HttpSession session = request.getSession();
 
-            String nrol = request.getParameter("nombre");
-             
-            
+            String nombre = request.getParameter("nombre");
+            String clinica = request.getParameter("clinica");
 
             
-            String query = "INSERT INTO `roles`(`rol`,`Habilitado`)VALUES('"+nrol+"',"+true+");";
+            String query = "INSERT INTO `sedes`(`sede`,`clinica`,`Habilitado`)VALUES('"+nombre+"','"+clinica+"',"+true+");";
             stm.execute(query);
             String sQuery = query.replace("'", "`");
             String querylog = "insert into logs (fecha,rol,usuario,accion)values(now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";
@@ -43,7 +42,7 @@ public class create_roles extends HttpServlet {
             con.close();
             c.cierraConexion();
 
-           response.sendRedirect("search-roles.jsp");
+           response.sendRedirect("search-sedes.jsp");
           
 
         } catch (Exception s) {
@@ -57,7 +56,7 @@ public class create_roles extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(create_roles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(create_sedes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -67,7 +66,7 @@ public class create_roles extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(create_roles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(create_sedes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
