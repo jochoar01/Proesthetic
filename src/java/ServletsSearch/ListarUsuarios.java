@@ -58,11 +58,11 @@ public class ListarUsuarios extends HttpServlet {
                     // Obtenemos y guardamos los datos de la consulta
                     usuario.setIdUsuarios(rs.getInt(1));
                     usuario.setNombreUsuario(rs.getString(2));
-                    usuario.setNombre(rs.getString(3));
-                    usuario.setRol(rs.getString(4));
+                    usuario.setCedula(rs.getString(3));
+                    usuario.setUsuario(rs.getString(4));
                     usuario.setPassword(rs.getString(5));
-                    usuario.setHabilitado(rs.getBoolean(6));
-                    rol.setIdrol(rs.getInt(7));
+                    rol.setIdrol(rs.getInt(6));
+                    usuario.setHabilitado(rs.getBoolean(7));
                     usuario.setRolId(rol);
                     //Agregamos contenedor a array en sesión
                     ListUsuarios.add(usuario);

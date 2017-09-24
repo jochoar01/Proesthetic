@@ -76,7 +76,7 @@ public class ListarPedidos extends HttpServlet {
                 p.setAntagonista(rs.getString(6));
                 p.setFechaEntrada(rs.getDate(7));
                 od.setIdOdontologos(rs.getInt(8));
-                p.setOdontologoid(od);
+                p.setOdontologo(od);
                 p.setTipoTrabajo(rs.getString(9));
                 p.setFechaEntrega(rs.getDate(10));
                 p1.setIdprocesos(rs.getInt(11));

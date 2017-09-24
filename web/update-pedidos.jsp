@@ -56,7 +56,7 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Odontologo</label>
-                        <input name="Odontologo" type="text" class="form-control" value="<%=obj.getOdontologoid()%>" >
+                        <input name="Odontologo" type="text" class="form-control" value="<%=obj.getOdontologo()%>" >
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
