@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Listado de Roles</h3>
-                    <a href="create-roles.html" class="btn btn-success fa fa-plus float-right"></a>
+                    <a href="create-roles.jsp" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">

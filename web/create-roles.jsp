@@ -9,18 +9,14 @@
             <h2>Creación de Roles</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo">
-                    <div class="form-group" style="display:none;">
-                        <label>Id Rol</label>
-                        <input type="text" class="form-control" placeholder="Id Rol." readonly>
-                    </div>
-                    <!-- End Division -->
+                <form method="post" class="completo" action="create_roles">
+                  
                     <div class="form-group">
                         <label>Nombre Rol</label>
-                        <input type="text" class="form-control" placeholder="Nombre de Rol." autofocus>
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre de Rol." autofocus>
                     </div>
-                    <!-- End Divicion -->
-                    <div class="form-group">
+                    <!-- End Division -->
+                    <!--<div class="form-group">
                         <label>Estado</label>
                         <select name="estado" class="form-control">
                             <option value="1">Disponible</option>

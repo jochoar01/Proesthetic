@@ -6,10 +6,10 @@
         <%@include file="unitedMenu.jsp" %>
         <!-- Begin page content -->
         <div class="container">
-            <h2>Creación de Procesos</h2>
+            <h2>Creacion de Procesos</h2>
             <br>
             <div class="row">
-                <form method="post" action="#" style="width:100%;">
+                <form method="post" action="create_procesos" style="width:100%;">
                     <div class="form-group" style="display:none;">
                         <label>Id:</label>
                         <input type="number" name="id" class="form-control" readonly>

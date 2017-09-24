@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "create_pedidos", urlPatterns = {"/create_pedidos"})
-public class create_pedidos extends HttpServlet {
+@WebServlet(name = "create_caja", urlPatterns = {"/create_caja"})
+public class create_caja extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -28,20 +28,10 @@ public class create_pedidos extends HttpServlet {
             Statement stm = con.createStatement();
 //            HttpSession session = request.getSession();
 
-            String caja = request.getParameter("Caja");
-            String clinica = request.getParameter("Clinica");
-            String paciente = request.getParameter("Paciente");
-            String orden = request.getParameter("Orden");
-            String antagonista = request.getParameter("Antagonista");
-            String fecha_entrada = request.getParameter("Fecha_entrada");
-            String odontologo = request.getParameter("Odontologo");
-            String tipo_trabajo = request.getParameter("Tipo_trabajo");
-            String fecha_entrega = request.getParameter("Fecha_entrega");
-            String prueba1 = request.getParameter("Prueba1");
-            String prueba2 = request.getParameter("Prueba2");
-            String prueba3 = request.getParameter("Prueba3");
+            String ncaja = request.getParameter("nombre");
+
             
-            String query = "INSERT INTO `pedidos`(`caja`,`clinica`,`paciente`,`orden`,`antagonista`,`fecha_entrada`,`odontologoid`,`tipo_trabajo`,`fecha_entrega`,`prueba1`,`prueba2`,`prueba3`,`Habilitado`) VALUES ('" + caja + "','" + clinica + "','" + paciente + "','" + orden + "','" + antagonista + "','" + fecha_entrada + "','" + odontologo + "','" + tipo_trabajo + "','" + fecha_entrega + "','" + prueba1 + "','" + prueba2 + "','" + prueba3 + "'," + true + ");";
+            String query = "INSERT INTO `cajas`(`caja`,`cajascol1`,`Habilitado`) VALUES('"+ncaja+"','nada',"+true+");";
             stm.execute(query);
             String sQuery = query.replace("'", "`");
             String querylog = "insert into logs (fecha,rol,usuario,accion)values(now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";
@@ -51,7 +41,8 @@ public class create_pedidos extends HttpServlet {
             con.close();
             c.cierraConexion();
 
-            response.sendRedirect("ListarPedidos");
+           response.sendRedirect("ListarCajas");
+          
 
         } catch (Exception s) {
             s.printStackTrace();
@@ -64,7 +55,7 @@ public class create_pedidos extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(create_pedidos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(create_caja.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -74,7 +65,7 @@ public class create_pedidos extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(create_pedidos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(create_caja.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
