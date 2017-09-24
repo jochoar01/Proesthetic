@@ -2,18 +2,18 @@
 <%@page import="Persistencias.Clinicas"%>
 <%@page import="java.util.ArrayList"%>
 <%
-    /*
+    Integer pos = null;
+    ArrayList<Clinicas> ListaClinicas = null;
+    Clinicas obj = null;
     try
     {
-        */
-        int pos = Integer.parseInt((String)request.getParameter("pos"));
-        ArrayList<Clinicas> ListaClinicas = (ArrayList<Clinicas>)session.getAttribute("ListaClinicas");
-        Clinicas obj = (Clinicas)ListaClinicas.get( pos );
-    /*
+        pos = Integer.parseInt((String)request.getParameter("pos"));
+        ListaClinicas = (ArrayList<Clinicas>)session.getAttribute("ListaClinicas");
+        obj = (Clinicas)ListaClinicas.get( pos );
     }catch(Exception e){
         System.out.println(e.getMessage());
         response.sendRedirect("index.jsp");
-    }*/
+    }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,8 +55,13 @@
                     <div class="form-group">
                         <label>Estado</label>
                         <select name="estado" class="form-control">
-                            <option value="1" selected>Habilitado</option>
-                            <option value="0">Inhabilitado</option>
+                            <%
+                                if (obj.getHabilitado()) {
+                                    %><option value="1" selected>Habilitado</option><option value="0" >Inhabilitado</option><%
+                                } else {
+                                    %><option value="1">Habilitado</option><option value="0" selected>Inhabilitado</option><%
+                                }
+                            %>
                         </select>
                     </div>
                     <!-- End Division -->

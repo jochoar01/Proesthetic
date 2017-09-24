@@ -1,41 +1,69 @@
+<%@page import="Persistencias.Roles"%>
+<%
+    Integer pos = null;
+    ArrayList<Usuarios> ListaUsuarios = null;
+    Usuarios obj = null;
+    ArrayList<Roles> Listado = null;
+    try
+    {
+        pos = Integer.parseInt((String)request.getParameter("site"));
+        ListaUsuarios = (ArrayList<Usuarios>)session.getAttribute("ListarUsuarios");
+        obj = (Usuarios)ListaUsuarios.get(pos);
+        Listado = (ArrayList<Roles>) session.getAttribute("ListarRoles");
+    }
+    catch(Exception e) {
+        System.out.println(e.getMessage());
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
         <%@include file="unitedMenu.jsp" %>
         <!-- Begin page content -->
         <div class="container">
-            <h2>ActualizaciÃ³n de Usuarios</h2>
+            <h2>Actualización de Usuarios</h2>
             <br>
             <div class="row">
                 <form method="post" class="completo">
                     <div class="form-group">
                         <label>Id Usuario</label>
-                        <input type="number" name="id" class="form-control" placeholder="NÃºmero Id del usuario" value="1" readonly>
+                        <input type="number" name="id" class="form-control" placeholder="Número Id del usuario" value="<%= obj.getIdUsuarios()%>" readonly>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Nombre Empleado</label>
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre Empleado" value="Juan Ochoa" autofocus>
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre Empleado" value="<%= obj.getNombre()%>" autofocus>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Usuario</label>
-                        <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="jochoa">
+                        <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="<%= obj.getNombreUsuario()%>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
-                        <label>ContraseÃ±a</label>
-                        <input type="text" name="contrasena" class="form-control" placeholder="ContraseÃ±a" value="jochoas">
+                        <label>Contraseña</label>
+                        <input type="text" name="contrasena" class="form-control" placeholder="Contraseña" value="<%= obj.getPassword()%>" readonly>
                     </div>
                     <div class="form-group">
                         <label>Rol de Usuario</label>
                         <select name="rol" class="form-control">
                             <option value="">Seleccine...</option>
-                            <option value="1">Gerente</option>
-                            <option value="2" selected>Administrador del Sistema</option>
-                            <option value="3">Coordinador</option>
+                        <%
+                        try {
+                            for (Roles rol : Listado) {
+                                if (obj.getRolId().getIdrol() == rol.getIdrol()) {
+                                    %><option value="<%= rol.getIdrol()%>" selected><%= rol.getRol()%></option><%
+                                } else {
+                                    %><option value="<%= rol.getIdrol()%>"><%= rol.getRol()%></option><%
+                                }
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                        %>
                         </select>
                     </div>
                     <!-- End Division -->
@@ -43,14 +71,19 @@
                     <div class="form-group">
                         <label>Estado</label>
                         <select name="estado" class="form-control">
-                            <option value="1" selected>Habilitada</option>
-                            <option value="0">Inahbilitada</option>
+                        <%
+                        if (obj.getHabilitado()) {
+                            %><option value="1" selected>Habilitado</option><option value="0" >Inhabilitado</option><%
+                        } else {
+                            %><option value="1">Habilitado</option><option value="0" selected>Inhabilitado</option><%
+                        }
+                        %>
                         </select>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <input type="submit" Value="Actualizar Usuario" class="btn btn-success btn-lg btn-block">
-                         <a href="search-usuarios.html" type="submit" Value="Cancelar" class="btn btn-danger btn-lg btn-block">Cancelar</a>
+                         <a href="javascript:history.go(-1);" class="btn btn-danger btn-lg btn-block">Cancelar</a>
                     </div>
                     <!-- End Division -->
                 </form>

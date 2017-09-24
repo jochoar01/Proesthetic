@@ -43,8 +43,13 @@
                     <div class="form-group">
                         <label>Estado</label>
                         <select name="estado" class="form-control">
-                            <option value="1" selected>Habilitado</option>
-                            <option value="0">Inhabilitado</option>
+                            <%
+                                if (obj.getHabilitado()) {
+                                    %><option value="1" selected>Habilitado</option><option value="0" >Inhabilitado</option><%
+                                } else {
+                                    %><option value="1">Habilitado</option><option value="0" selected>Inhabilitado</option><%
+                                }
+                            %>
                         </select>
                     </div>
                     <!-- End Division -->

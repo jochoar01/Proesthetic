@@ -1,7 +1,7 @@
 <%@page import="Persistencias.Pedidos"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
@@ -9,9 +9,9 @@
         <!-- Begin page content -->
 
         <%
-            int pos = Integer.parseInt((String) request.getParameter("Id"));
-            ArrayList<Pedidos> Listar = (ArrayList<Pedidos>) session.getAttribute("Listar");
-            Pedidos obj = (Pedidos) Listar.get(pos);
+        int pos = Integer.parseInt((String) request.getParameter("Id"));
+        ArrayList<Pedidos> Listar = (ArrayList<Pedidos>) session.getAttribute("Listar");
+        Pedidos obj = (Pedidos) Listar.get(pos);
         %>
         <div class="container">
             <h2>Actualización de Pedidos</h2>
@@ -21,27 +21,27 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Id:</label>
-                        <input type="text" name="Id" class="form-control" placeholder="Id" value="<%=obj.getIdpedidos()%>" readonly>
+                        <input type="text" name="Id" class="form-control" placeholder="Id" value="<%= obj.getIdpedidos() %>" readonly>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Caja:</label>
-                        <input type="text" name="Caja" class="form-control" placeholder="Caja" value="<%=obj.getCaja()%>">
+                        <input type="text" name="Caja" class="form-control" placeholder="Caja" value="<%= obj.getCaja() %>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Clinica:</label>
-                        <input type="text" name="Clinica" class="form-control" placeholder="Clinica" value="<%=obj.getClinica()%>">
+                        <input type="text" name="Clinica" class="form-control" placeholder="Clinica" value="<%= obj.getClinica() %>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Paciente:</label>
-                        <input type="text" name="Paciente" class="form-control" placeholder="Paciente" value="<%=obj.getPaciente()%>">
+                        <input type="text" name="Paciente" class="form-control" placeholder="Paciente" value="<%= obj.getPaciente() %>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Orden:</label>
-                        <input type="text" name="Orden" class="form-control" placeholder="Orden" value="<%=obj.getOrden()%>">
+                        <input type="text" name="Orden" class="form-control" placeholder="Orden" value="<%= obj.getOrden() %>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
@@ -56,7 +56,7 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Odontologo</label>
-                        <input name="Odontologo" type="text" class="form-control" value="<%=obj.getOdontologo()%>" >
+                        <input name="Odontologo" type="text" class="form-control" value="<%=obj.getOdontologoid()%>" >
                     </div>
                     <!-- End Division -->
                     <div class="form-group">

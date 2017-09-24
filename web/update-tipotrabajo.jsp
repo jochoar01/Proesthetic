@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <%@include file="unitedhead.jsp" %>
     <body>
         <!-- Fixed navbar -->
