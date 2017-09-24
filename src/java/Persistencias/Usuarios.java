@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,23 +30,24 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
     , @NamedQuery(name = "Usuarios.findByIdUsuarios", query = "SELECT u FROM Usuarios u WHERE u.idUsuarios = :idUsuarios")
     , @NamedQuery(name = "Usuarios.findByNombreUsuario", query = "SELECT u FROM Usuarios u WHERE u.nombreUsuario = :nombreUsuario")
-    , @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre")
-    , @NamedQuery(name = "Usuarios.findByRol", query = "SELECT u FROM Usuarios u WHERE u.rol = :rol")
+    , @NamedQuery(name = "Usuarios.findByCedula", query = "SELECT u FROM Usuarios u WHERE u.cedula = :cedula")
+    , @NamedQuery(name = "Usuarios.findByUsuario", query = "SELECT u FROM Usuarios u WHERE u.usuario = :usuario")
     , @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password")
     , @NamedQuery(name = "Usuarios.findByHabilitado", query = "SELECT u FROM Usuarios u WHERE u.habilitado = :habilitado")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idUsuarios")
     private Integer idUsuarios;
     @Column(name = "NombreUsuario")
     private String nombreUsuario;
-    @Column(name = "Nombre")
-    private String nombre;
-    @Column(name = "Rol")
-    private String rol;
+    @Column(name = "Cedula")
+    private String cedula;
+    @Column(name = "Usuario")
+    private String usuario;
     @Column(name = "Password")
     private String password;
     @Column(name = "Habilitado")
@@ -76,20 +79,20 @@ public class Usuarios implements Serializable {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    public String getRol() {
-        return rol;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getPassword() {

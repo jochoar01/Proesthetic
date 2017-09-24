@@ -44,59 +44,66 @@ public class UsuarioLogin extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         try {
+            //Obtenemos parametros del formulario
+            String user = (String)request.getParameter("usrname");
+            String pass = (String)request.getParameter("psw");
+            
+            // Preparamos los array list como depenciencias de funcionamiento
+            ArrayList<Roles> ListRoles = new ArrayList();
+            ArrayList<Clinicas> ListClinicas = new ArrayList();
+            
             //Instanciamos las conexiones
-//            ArrayList<Roles> ListRoles = new ArrayList();
-//            ArrayList<Clinicas> ListClinicas = new ArrayList();
             ConectaDB c = new ConectaDB();
             Connection con = c.conectar();
             Statement stm = con.createStatement();
-            //Obtenemos parametros del formulario
-            String user = (String) request.getParameter("usrname");
-            String pass = (String) request.getParameter("psw");
+            
             //Realizamos consulta para verificar si el usuario existe
             ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `usuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0 , 1;");
             //Verificamos y obtenemos datos de la consulta
             if (rs.next()) {
                 session.setAttribute("rol", rs.getString(6));
                 session.setAttribute("nombre", rs.getString(2));
-                  response.sendRedirect("inicio.jsp");
-                //System.out.println(rs.getString(3));
+                //response.sendRedirect("inicio.jsp");
             }
+            
             //obtenemos datos de los roles
-//            ResultSet rsRol = stm.executeQuery("SELECT * FROM `roles`;");
-//            while (rsRol.next()) {
-//                // Creamos contenedor de datos
-//                Roles rol = new Roles();
-//                // Obtenemos y guardamos los datos de la consulta
-//                rol.setIdrol(rsRol.getInt(1));
-//                rol.setRol(rsRol.getString(2));
-//                rol.setHabilitado(rsRol.getBoolean(3));
-//                //Agregamos contenedor a array en sesión
-//                ListRoles.add(rol);
-//            }
-//            session.setAttribute("ListarRoles", ListRoles);
-//            //obtenemos datos de las clinicas
-//            ResultSet rsClnc = stm.executeQuery("SELECT * FROM `clinicas`;");
-//            while( rsClnc.next() ) {
-//                Clinicas clinic = new Clinicas();
-//                //Guardar en clase Usuarios
-//                clinic.setIdClinicas      ( rsClnc.getInt(1)    );
-//                clinic.setNitClinicas     ( rsClnc.getString(2) );
-//                clinic.setNombreClinica   ( rsClnc.getString(3) );
-//                clinic.setDireccionClinica( rsClnc.getString(4) );
-//                clinic.setTelefonoClinica ( rsClnc.getString(5) );
-//                //Guardar los resultados en el ArrayList
-//                ListClinicas.add(clinic);
-//            }
-//            session.setAttribute("ListaClinicas", ListClinicas);
-//            //Cerramos concexiones
+            ResultSet rsRol = stm.executeQuery("SELECT * FROM `roles`;");
+            while (rsRol.next()) {
+                // Creamos contenedor de datos
+                Roles rol = new Roles();
+                // Obtenemos y guardamos los datos de la consulta
+                rol.setIdrol(rsRol.getInt(1));
+                rol.setRol(rsRol.getString(2));
+                rol.setHabilitado(rsRol.getBoolean(3));
+                //Agregamos contenedor a array en sesión
+                ListRoles.add(rol);
+            }
+            session.setAttribute("ListarRoles", ListRoles);
+            
+            //obtenemos datos de las clinicas
+            ResultSet rsClnc = stm.executeQuery("SELECT * FROM `clinicas`;");
+            while( rsClnc.next() ) {
+                Clinicas clinic = new Clinicas();
+                //Guardar en clase Usuarios
+                clinic.setIdClinicas      (rsClnc.getInt(1));
+                clinic.setNitClinicas     (rsClnc.getString(2));
+                clinic.setNombreClinica   (rsClnc.getString(3));
+                clinic.setDireccionClinica(rsClnc.getString(4));
+                clinic.setTelefonoClinica (rsClnc.getString(5));
+                clinic.setHabilitado      (rsClnc.getBoolean(6));
+                //Guardar los resultados en el ArrayList
+                ListClinicas.add(clinic);
+            }
+            session.setAttribute("ListaClinicas", ListClinicas);
+            
+            //Cerramos concexiones
             stm.close();
             con.close();
             c.cierraConexion();
             
             //Vamos al inicio
-          
-            //Cerramos las conexiones
+            response.sendRedirect("inicio.jsp");
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

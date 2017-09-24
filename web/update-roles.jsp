@@ -25,15 +25,15 @@
             <h2>Actualización de Roles</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo">
+                <form method="post" class="completo" action="ActualizarRoles">
                     <div class="form-group" style="display:none;">
-                        <label>Id Rol</label>
-                        <input type="text" class="form-control" placeholder="Id Rol." value="<%= obj.getIdrol()%>" readonly>
+                        <label>Id Rol: <%= obj.getIdrol()%></label>
+                        <input type="hidden" name="id" class="form-control" placeholder="Id Rol." value="<%= obj.getIdrol()%>" readonly>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
-                        <label>Nombre Rol</label>
-                        <input type="text" class="form-control" placeholder="Nombre de Rol." value="<%= obj.getRol()%>" autofocus>
+                        <label>Nombre del Rol</label>
+                        <input type="text" name="rol" class="form-control" placeholder="Nombre de Rol." value="<%= obj.getRol()%>" autofocus>
                     </div>
                     <!-- End Divicion -->
                     <div class="form-group">

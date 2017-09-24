@@ -6,7 +6,6 @@
 package ServletsUpdate;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,8 +48,7 @@ public class ActualizarPedidos extends HttpServlet {
                 System.out.println(usr);
 
             }
-//            
-
+            
             Connection con = c.conectar();
             Statement stm = con.createStatement();
 
@@ -72,7 +70,7 @@ public class ActualizarPedidos extends HttpServlet {
             // Ejecutamos Queey
             stm.executeUpdate(query);
             String sQuery = query.replace("'", "`");
-            String querylog = "insert into logs (fecha,rol,usuario,accion)values(now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";
+            String querylog = "insert into logs (fecha,rol,usuario,accion) values (now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";
 
             stm.execute(querylog);
 
@@ -83,7 +81,7 @@ public class ActualizarPedidos extends HttpServlet {
             response.sendRedirect("ListarPedidos");
 
         } catch (SQLException s) {
-            s.printStackTrace();
+            System.out.println(s.getMessage());
         }
     }
 

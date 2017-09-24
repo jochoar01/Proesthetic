@@ -25,7 +25,7 @@
             <h2>Actualización de Procesos</h2>
             <br>
             <div class="row">
-                <form method="post" action="#" class="completo">
+                <form method="post" action="ActualizarProcesos" class="completo">
                     <div class="form-group">
                         <label>Número de proceso:</label>
                         <input type="number" name="id" value="<%= obj.getIdprocesos()%>" class="form-control" readonly>

@@ -22,18 +22,18 @@
         <%@include file="unitedMenu.jsp" %>
         <!-- Begin page content -->
         <div class="container">
-            <h2>ActualizaciÃ³n de Cajas</h2>
+            <h2>Actualización de Cajas</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo">
+                <form method="post" class="completo" action="ActualizarCajas">
                     <div class="form-group">
                         <label>Id Caja</label>
-                        <input type="text" class="form-control" placeholder="Número Id de Caja." value="<%= obj.getIdcajas()%>" readonly>
+                        <input type="text" name="id" class="form-control" placeholder="Número Id de Caja." value="<%= obj.getIdcajas()%>" readonly>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Nombre Caja</label>
-                        <input type="text" class="form-control" placeholder="Nombre de la Caja." value="<%= obj.getCaja()%>" autofocus>
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre de la Caja." value="<%= obj.getCaja()%>" autofocus>
                     </div>
                     <!-- End Divicion -->
                     <div class="form-group">

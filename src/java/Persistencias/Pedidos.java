@@ -72,9 +72,9 @@ public class Pedidos implements Serializable {
     @JoinColumn(name = "prueba3", referencedColumnName = "idprocesos")
     @ManyToOne
     private Procesos prueba3;
-    @JoinColumn(name = "odontologoid", referencedColumnName = "idOdontologos")
+    @JoinColumn(name = "odontologo", referencedColumnName = "idOdontologos")
     @ManyToOne
-    private Odontologos odontologoid;
+    private Odontologos odontologo;
     @JoinColumn(name = "caja", referencedColumnName = "idcajas")
     @ManyToOne
     private Cajas caja;
@@ -177,12 +177,12 @@ public class Pedidos implements Serializable {
         this.prueba3 = prueba3;
     }
 
-    public Odontologos getOdontologoid() {
-        return odontologoid;
+    public Odontologos getOdontologo() {
+        return odontologo;
     }
 
-    public void setOdontologoid(Odontologos odontologoid) {
-        this.odontologoid = odontologoid;
+    public void setOdontologo(Odontologos odontologo) {
+        this.odontologo = odontologo;
     }
 
     public Cajas getCaja() {

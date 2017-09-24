@@ -27,7 +27,7 @@
             <h2>Actualización de Usuarios</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo">
+                <form method="post" class="completo" action="ActualizarUsuarios">
                     <div class="form-group">
                         <label>Id Usuario</label>
                         <input type="number" name="id" class="form-control" placeholder="Número Id del usuario" value="<%= obj.getIdUsuarios()%>" readonly>
@@ -35,12 +35,17 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Nombre Empleado</label>
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre Empleado" value="<%= obj.getNombre()%>" autofocus>
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre Empleado" value="<%= obj.getNombreUsuario()%>" autofocus>
+                    </div>
+                    <!-- End Division -->
+                    <div class="form-group">
+                        <label>Cedula Empleado</label>
+                        <input type="text" name="cedula" class="form-control" placeholder="Cedula Empleado" value="<%= obj.getCedula() %>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Usuario</label>
-                        <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="<%= obj.getNombreUsuario()%>">
+                        <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="<%= obj.getUsuario()%>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
@@ -50,7 +55,6 @@
                     <div class="form-group">
                         <label>Rol de Usuario</label>
                         <select name="rol" class="form-control">
-                            <option value="">Seleccine...</option>
                         <%
                         try {
                             for (Roles rol : Listado) {
@@ -83,7 +87,7 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <input type="submit" Value="Actualizar Usuario" class="btn btn-success btn-lg btn-block">
-                         <a href="javascript:history.go(-1);" class="btn btn-danger btn-lg btn-block">Cancelar</a>
+                        <a href="javascript:history.go(-1);" class="btn btn-danger btn-lg btn-block">Cancelar</a>
                     </div>
                     <!-- End Division -->
                 </form>

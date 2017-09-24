@@ -122,6 +122,6 @@ CREATE TABLE IF NOT EXISTS `Proesthetic`.`pedidos` (
   FOREIGN KEY (`prueba1`) REFERENCES `Proesthetic`.`procesos` (`idprocesos`),
   FOREIGN KEY (`prueba2`) REFERENCES `Proesthetic`.`procesos` (`idprocesos`),
   FOREIGN KEY (`prueba3`) REFERENCES `Proesthetic`.`procesos` (`idprocesos`),
-  FOREIGN KEY (`odontologoid`) REFERENCES `Proesthetic`.`odontologos` (`idOdontologos`),
+  FOREIGN KEY (`odontologo`) REFERENCES `Proesthetic`.`odontologos` (`idOdontologos`),
   FOREIGN KEY (`caja`) REFERENCES `Proesthetic`.`cajas` (`idcajas`),
   FOREIGN KEY (`clinica`) REFERENCES `Proesthetic`.`sedes` (`idsede`));

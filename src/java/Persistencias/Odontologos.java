@@ -50,7 +50,7 @@ public class Odontologos implements Serializable {
     private String emailOdontologo;
     @Column(name = "Habilitado")
     private Boolean habilitado;
-    @OneToMany(mappedBy = "odontologoid")
+    @OneToMany(mappedBy = "odontologo")
     private Collection<Pedidos> pedidosCollection;
 
     public Odontologos() {

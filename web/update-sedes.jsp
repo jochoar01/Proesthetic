@@ -28,15 +28,15 @@
             <h2>Actualización de Sedes</h2>
             <br>
             <div class="row">
-                <form method="post" class="completo">
+                <form method="post" class="completo" action="ActualizarSedes">
                     <div class="form-group">
                         <label>Id Sede</label>
-                        <input type="text" class="form-control" placeholder="Número Id de Sede." value="<%= obj.getIdsede()%>" readonly>
+                        <input type="text" name="id" class="form-control" placeholder="Número Id de Sede." value="<%= obj.getIdsede()%>" readonly>
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Nombre Sede</label>
-                        <input type="text" class="form-control" placeholder="Nombre de la Sede." value="<%= obj.getSede() %>" readonly>
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre de la Sede." value="<%= obj.getSede() %>">
                     </div>
                     <!-- End Divicion -->
                     <div class="form-group">

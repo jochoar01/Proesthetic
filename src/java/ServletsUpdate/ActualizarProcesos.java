@@ -8,8 +8,8 @@ package ServletsUpdate;
 import Controller.ConectaDB;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Daniel Lopez
+ * @author Daniels
  */
-@WebServlet(name = "ActualizarOdontologo", urlPatterns = {"/ActualizarOdontologo"})
-public class ActualizarOdontologo extends HttpServlet {
+@WebServlet(name = "ActualizarProcesos", urlPatterns = {"/ActualizarProcesos"})
+public class ActualizarProcesos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,34 +36,37 @@ public class ActualizarOdontologo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        
-        //Obtenemos los datos provenientes del formulario
-        String id        = (String)request.getParameter("id");
-        String nombre    = (String)request.getParameter("nombre");
-        String telefono  = (String)request.getParameter("telefono");
-        String direccion = (String)request.getParameter("direccion");
-        String estado    = (String)request.getParameter("estado");
-        
         try {
-            //Instanciamos las conexiones
+            // Instaciamos y realizamos preparaciones para realizar querys
             ConectaDB c = new ConectaDB();
-            Connection con = c.conectar();
-            Statement stm = con.createStatement();
+            Connection cn = c.conectar();
+            //Statement stm = cn.createStatement();
 
-            //Consultas
-            stm.executeUpdate("UPDATE `odontologos` SET `NombreOdontologo` = '" + nombre +"',`EmailOdontologo` = '" + direccion +"',`TelefonoOdontologo` = '" + telefono +"',`Habilitado` = '" + estado + "' WHERE `idOdontologos` = '"+id+"';");
-            
-            //Cerramos las conexiones
-            stm.close();
-            con.close();
+            String id        = request.getParameter("id");
+            String nombre    = request.getParameter("nombre");
+            String idtrabajo = request.getParameter("idtrabajo");
+            String estado    = request.getParameter("estado");
+
+            // Preparamos y Ejecutamos Query
+            String query = "UPDATE `procesos` SET `trabajo`='?',`proceso`='?',`Habilitado`='?' WHERE `idprocesos`='?';";
+            PreparedStatement preparedStmt = cn.prepareStatement(query);
+            preparedStmt.setString (1, nombre);
+            preparedStmt.setString (2, idtrabajo);
+            preparedStmt.setString (3, estado);
+            preparedStmt.setString (4, id);
+            preparedStmt.executeUpdate();
+            //Cerramos concexiones
+            preparedStmt.close();
+            //stm.close();
+            cn.close();
             c.cierraConexion();
-            
-            response.sendRedirect("BusquedaOdontologos");
+            // Redireccionamos al listar
+            response.sendRedirect("Listarprocesos");
+        } catch (SQLException s) {
+            System.out.println(s.getMessage());
+            response.sendRedirect("index.jsp");
         }
-        catch(SQLException e){
-            System.out.println(e.getMessage());
-            response.sendRedirect("inicio.jsp");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
