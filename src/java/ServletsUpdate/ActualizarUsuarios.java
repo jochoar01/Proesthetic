@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,7 @@ public class ActualizarUsuarios extends HttpServlet {
             // Instaciamos y realizamos preparaciones para realizar querys
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
-            //Statement stm = cn.createStatement();
+            Statement stm = cn.createStatement();
             
             String id      = request.getParameter("id");
             String nombre  = request.getParameter("nombre");
@@ -50,18 +51,11 @@ public class ActualizarUsuarios extends HttpServlet {
             String estado  = request.getParameter("estado");
             
             // Preparamos y Ejecutamos Query
-            String query = "UPDATE `usuarios` SET `NombreUsuario`='?',`Cedula`='?',`Usuario`='?',`rol_id`='?',`Habilitado`='?' WHERE `idUsuarios` = '?';";
-            PreparedStatement preparedStmt = cn.prepareStatement(query);
-            preparedStmt.setString (1, nombre);
-            preparedStmt.setString (2, cedula);
-            preparedStmt.setString (3, usuario);
-            preparedStmt.setString (4, rol);
-            preparedStmt.setString (5, estado);
-            preparedStmt.setString (6, id);
-            preparedStmt.executeUpdate();
-            preparedStmt.close();
+            String query = "UPDATE `usuarios` SET `NombreUsuario`='" + nombre + "',`Cedula`='" + cedula + "',`Usuario`='" + usuario + "',`rol_id`='" + rol + "',`Habilitado`='" + estado + "' WHERE `idUsuarios` = '" + id + "';";
+            stm.executeUpdate(query);
+            
             //Cerramos concexiones
-            //stm.close();
+            stm.close();
             cn.close();
             c.cierraConexion();
             // Redireccionamos al listar

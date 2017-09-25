@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="Persistencias.Cajas"%>
 <%
     ArrayList<Cajas> Listado = (ArrayList<Cajas>) session.getAttribute("ListarCajas");
@@ -38,6 +39,9 @@ try {
                         <td class="text-success">Habilitado</td>
                         <td>
                             <a href="update-cajas.jsp?site=<%= i %>" class="btn btn-warning fa fa-pencil"></a>
+                            <% if (session.getAttribute("rol").equals("1")) { %>
+                            <a href="EliminarCajas?id=<%= obj.getIdcajas() %>" class="btn btn-danger fa fa-times"></a>
+                            <% } %>
                         </td>
                     </tr>
         <%

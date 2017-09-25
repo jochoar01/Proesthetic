@@ -8,8 +8,8 @@ package ServletsUpdate;
 import Controller.ConectaDB;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,22 +40,18 @@ public class ActualizarRoles extends HttpServlet {
             // Instaciamos y realizamos preparaciones para realizar querys
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
-            //Statement stm = cn.createStatement();
+            Statement stm = cn.createStatement();
 
             String id     = request.getParameter("id");
             String rol    = request.getParameter("rol");
             String estado = request.getParameter("estado");
 
             // Preparamos y Ejecutamos Query
-            String query = "UPDATE `roles` SET `rol`='?',`Habilitado`='?' WHERE `idrol` = '?';";
-            PreparedStatement preparedStmt = cn.prepareStatement(query);
-            preparedStmt.setString (1, rol);
-            preparedStmt.setString (2, estado);
-            preparedStmt.setString (3, id);
-            preparedStmt.executeUpdate();
+            String query = "UPDATE `roles` SET `rol`='" + rol + "',`Habilitado`='" + estado + "' WHERE `idrol` = '" + id + "';";
+            stm.executeUpdate(query);
+            
             //Cerramos concexiones
-            preparedStmt.close();
-            //stm.close();
+            stm.close();
             cn.close();
             c.cierraConexion();
             // Redireccionamos al listar

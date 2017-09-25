@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,7 @@ public class ActualizarSedes extends HttpServlet {
             // Instaciamos y realizamos preparaciones para realizar querys
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
-            //Statement stm = cn.createStatement();
+            Statement stm = cn.createStatement();
 
             String id      = request.getParameter("id");
             String nombre  = request.getParameter("nombre");
@@ -48,16 +49,11 @@ public class ActualizarSedes extends HttpServlet {
             String estado  = request.getParameter("estado");
 
             // Preparamos y Ejecutamos Query
-            String query = "UPDATE `sedes` SET `sede`='?',`clinica`='?',`Habilitado`='?' WHERE `idsede`='?';";
-            PreparedStatement preparedStmt = cn.prepareStatement(query);
-            preparedStmt.setString (1, nombre);
-            preparedStmt.setString (2, clinica);
-            preparedStmt.setString (3, estado);
-            preparedStmt.setString (4, id);
-            preparedStmt.executeUpdate();
-            preparedStmt.close();
+            String query = "UPDATE `sedes` SET `sede`='" + nombre + "',`clinica`='" + clinica + "',`Habilitado`='" + estado + "' WHERE `idsede`='" + id + "';";
+            stm.executeUpdate(query);
+            
             //Cerramos concexiones
-            //stm.close();
+            stm.close();
             cn.close();
             c.cierraConexion();
             // Redireccionamos al listar

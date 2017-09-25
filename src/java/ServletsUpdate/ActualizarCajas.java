@@ -7,10 +7,9 @@ package ServletsUpdate;
 
 import Controller.ConectaDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,22 +40,16 @@ public class ActualizarCajas extends HttpServlet {
             // Instaciamos y realizamos preparaciones para realizar querys
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
-            //Statement stm = cn.createStatement();
-
+            Statement stm = cn.createStatement();
+            // Obtenemos datos
             String id        = request.getParameter("id");
             String nombre    = request.getParameter("nombre");
             String estado    = request.getParameter("estado");
-
             // Preparamos y Ejecutamos Query
-            String query = "UPDATE `cajas` SET `caja`='?',`Habilitado`='?' WHERE `idcajas`='?';";
-            PreparedStatement preparedStmt = cn.prepareStatement(query);
-            preparedStmt.setString (1, nombre);
-            preparedStmt.setString (2, estado);
-            preparedStmt.setString (3, id);
-            preparedStmt.executeUpdate();
+            String query = "UPDATE `cajas` SET `caja`='" + nombre + "',`Habilitado`='" + estado + "' WHERE `idcajas`='" + id + "';";
+            stm.executeUpdate(query);
             //Cerramos concexiones
-            preparedStmt.close();
-            //stm.close();
+            stm.close();
             cn.close();
             c.cierraConexion();
             // Redireccionamos al listar

@@ -43,7 +43,7 @@ public class EliminarCajas extends HttpServlet {
             Connection con = c.conectar();
             Statement stm = con.createStatement();
             //Preparamos y Ejecutamos query
-            String query = "UPDATE `procesos` SET `Habilitado`='0' WHERE `idprocesos`='" + id + "';";
+            String query = "UPDATE `cajas` SET `Habilitado`='0' WHERE `idcajas`='" + id + "';";
             stm.executeUpdate(query);
             //Cerramos conexiones
             stm.close();
