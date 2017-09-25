@@ -46,15 +46,15 @@
                 </a>
                 <div class="dropdown-menu">
                     <!--<a id="SedesMenu" class="dropdown-item" href="search-sedes.jsp">Sedes</a>-->
-                    <a class="dropdown-item" href="#">Logs</a>
-                    <a class="dropdown-item" href="#">Cajas</a>
-                    <a class="dropdown-item" href="#">Roles</a>
-                    <a class="dropdown-item" href="#">Usuarios</a>
-                    <a class="dropdown-item" href="#">Procesos</a>
+                    <a class="dropdown-item" href="ListarLogs">Logs</a>
+                    <a class="dropdown-item" href="TablaCajas">Cajas</a>
+                    <a class="dropdown-item" href="TablaRoles">Roles</a>
+                    <a class="dropdown-item" href="TablaUsuarios">Usuarios</a>
+                    <a class="dropdown-item" href="TablaProcesos">Procesos</a>
                     <a class="dropdown-item" href="TablaPedidos">Pedidos</a>
-                    <a class="dropdown-item" href="Tabla-clinicas.jsp">Clinicas</a>
-                    <a class="dropdown-item" href="#">Sedes</a>
-                    <a class="dropdown-item" href="Tabla-odontologos.jsp">Odontologos</a>
+                    <a class="dropdown-item" href="TablaClientes">Clinicas</a>
+                    <a class="dropdown-item" href="TablaSedes">Sedes</a>
+                    <a class="dropdown-item" href="TablaOdontologos">Odontologos</a>
                 </div>
             </li>
             <% }%>

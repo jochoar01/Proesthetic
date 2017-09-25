@@ -1,3 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Persistencias.Procesos"%>
+<%
+    ArrayList<Procesos> Listado = (ArrayList<Procesos>) session.getAttribute("TablaProcesos");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -9,7 +14,6 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Tabla de Procesos</h3>
-                    <a href="create-procesos.html" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">
@@ -19,40 +23,31 @@
                         <th>Trabajo</th>
                         <th>Proceso</th>
                         <th>Estado</th>
-                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
+<%
+try {
+    Integer i = -1;
+    for (Procesos obj : Listado) {
+        i += 1;
+        %>
                     <tr>
-                        <td>1</td>
-                        <td>Trabajo 1 (1)</td>
-                        <td>Proceso 1</td>
+                        <td><%= obj.getIdprocesos() %></td>
+                        <td><%= obj.getTrabajo() %></td>
+                        <td><%= obj.getProceso() %></td>
+                        <% if(obj.getHabilitado().equals("true")) { %>
                         <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-procesos.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
+                        <% } else { %>
+                        <td class="text-danger">Inactivo</td>
+                        <% } %>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Trabajo 1 (1)</td>
-                        <td>Proceso 2</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-procesos.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Trabajo 2 (2)</td>
-                        <td>Proceso 1</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-procesos.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
+        <%
+    }
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+%>
                 </tbody>
             </table>
         </div>

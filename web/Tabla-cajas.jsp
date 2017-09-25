@@ -1,3 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Persistencias.Cajas"%>
+<%
+    ArrayList<Cajas> Listado = (ArrayList<Cajas>) session.getAttribute("TablaCajas");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -9,7 +14,6 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Tabla cajas</h3>
-                    <a href="create-cajas.jsp" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">
@@ -18,37 +22,30 @@
                         <th>Id</th>
                         <th>Caja</th>
                         <th>Estado</th>
-                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
+<%
+try {
+    Integer i = -1;
+    for (Cajas obj : Listado) {
+        i += 1;
+        %>
                     <tr>
-                        <td>1</td>
-                        <td>Caja A1</td>
+                        <td><%= obj.getIdcajas() %></td>
+                        <td><%= obj.getCaja()%></td>
+                        <% if(obj.getHabilitado()) { %>
                         <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-cajas.html" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
+                        <% } else { %>
+                        <td class="text-danger">Inactivo</td>
+                        <% } %>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Caja A2</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-cajas.html" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Caja A3</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-cajas.html" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
+        <%
+    }
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+%>
                 </tbody>
             </table>
         </div>

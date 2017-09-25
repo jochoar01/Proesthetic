@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServletsSearch;
+package Tablas;
 
 import Controller.ConectaDB;
-import Persistencias.Logs;
+import Persistencias.Procesos;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,8 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Daniels
  */
-@WebServlet(name = "ListarLogs", urlPatterns = {"/ListarLogs"})
-public class ListarLogs extends HttpServlet {
+@WebServlet(name = "TablaProcesos", urlPatterns = {"/TablaProcesos"})
+public class TablaProcesos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,40 +40,37 @@ public class ListarLogs extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try {
             // Instanciación de clases
             HttpSession session = request.getSession();
-            ArrayList<Logs> ListLogs = new ArrayList();
+            ArrayList<Procesos> ListProcess = new ArrayList();
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
             Statement stm = cn.createStatement();
             // Ejecutar busqueda de cajas
-            String sql = "SELECT * FROM `logs`;";
+            String sql = "SELECT * FROM `procesos` WHERE `Habilitado`='true';";
             ResultSet rs = stm.executeQuery(sql);
-                while (rs.next()) {                
+                while (rs.next()) {
                     // Creamos contenedor de datos
-                    Logs log = new Logs();
+                    Procesos proceso = new Procesos();
                     // Obtenemos y guardamos los datos de la consulta
-                    log.setIdlog(rs.getInt(1));
-                    log.setFecha(rs.getDate(2));
-                    log.setRol(rs.getString(3));
-                    log.setUsuario(rs.getString(4));
-                    log.setAccion(rs.getString(5));
+                    proceso.setIdprocesos(rs.getInt(1));
+                    proceso.setTrabajo(rs.getString(2));
+                    proceso.setProceso(rs.getString(3));
+                    proceso.setHabilitado(rs.getString(4));
                     //Agregamos contenedor a array en sesión
-                    ListLogs.add(log);
+                    ListProcess.add(proceso);
                 }
             // Guardar datos en la sessión del servidor
-            session.setAttribute("ListarLogs", ListLogs);
+            session.setAttribute("TablaProcesos", ListProcess);
             //Cerramos concexiones
             stm.close();
             cn.close();
             c.cierraConexion();
-            response.sendRedirect("Tabla-Logs.jsp");
-        } catch(SQLException e){
+            response.sendRedirect("Tabla-procesos.jsp");
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

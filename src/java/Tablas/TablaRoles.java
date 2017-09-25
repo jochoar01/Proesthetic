@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServletsSearch;
+package Tablas;
 
 import Controller.ConectaDB;
-import Persistencias.Logs;
+import Persistencias.Roles;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Daniels
  */
-@WebServlet(name = "ListarLogs", urlPatterns = {"/ListarLogs"})
-public class ListarLogs extends HttpServlet {
+@WebServlet(name = "TablaRoles", urlPatterns = {"/TablaRoles"})
+public class TablaRoles extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,40 +39,37 @@ public class ListarLogs extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try {
             // Instanciación de clases
             HttpSession session = request.getSession();
-            ArrayList<Logs> ListLogs = new ArrayList();
+            ArrayList<Roles> ListRoles = new ArrayList();
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
             Statement stm = cn.createStatement();
             // Ejecutar busqueda de cajas
-            String sql = "SELECT * FROM `logs`;";
+            String sql = "SELECT * FROM `roles`;";
             ResultSet rs = stm.executeQuery(sql);
-                while (rs.next()) {                
+                while (rs.next()) {
                     // Creamos contenedor de datos
-                    Logs log = new Logs();
+                    Roles rol = new Roles();
                     // Obtenemos y guardamos los datos de la consulta
-                    log.setIdlog(rs.getInt(1));
-                    log.setFecha(rs.getDate(2));
-                    log.setRol(rs.getString(3));
-                    log.setUsuario(rs.getString(4));
-                    log.setAccion(rs.getString(5));
+                    rol.setIdrol(rs.getInt(1));
+                    rol.setRol(rs.getString(2));
+                    rol.setHabilitado(rs.getBoolean(3));
                     //Agregamos contenedor a array en sesión
-                    ListLogs.add(log);
+                    ListRoles.add(rol);
                 }
             // Guardar datos en la sessión del servidor
-            session.setAttribute("ListarLogs", ListLogs);
+            session.setAttribute("TablaRoles", ListRoles);
             //Cerramos concexiones
             stm.close();
             cn.close();
             c.cierraConexion();
-            response.sendRedirect("Tabla-Logs.jsp");
-        } catch(SQLException e){
+            //Redireccionamos
+            response.sendRedirect("Tabla-roles.jsp");
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

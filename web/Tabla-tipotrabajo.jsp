@@ -9,7 +9,6 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Tabla de Tipos de Trabajo</h3>
-                    <a href="create-tipotrabajo.html" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">

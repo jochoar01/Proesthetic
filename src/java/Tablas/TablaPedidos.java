@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServletsSearch;
+package Tablas;
 
 import Controller.ConectaDB;
-import Persistencias.Logs;
+import Persistencias.Cajas;
+import Persistencias.Odontologos;
+import Persistencias.Pedidos;
+import Persistencias.Procesos;
+import Persistencias.Sedes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,10 +26,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Daniels
+ * @author juan
  */
-@WebServlet(name = "ListarLogs", urlPatterns = {"/ListarLogs"})
-public class ListarLogs extends HttpServlet {
+@WebServlet(name = "TablaPedidos", urlPatterns = {"/TablaPedidos"})
+public class TablaPedidos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,36 +45,61 @@ public class ListarLogs extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
-            // Instanciación de clases
             HttpSession session = request.getSession();
-            ArrayList<Logs> ListLogs = new ArrayList();
+            ArrayList<Pedidos> ListarP = new ArrayList();
+
             ConectaDB c = new ConectaDB();
-            Connection cn = c.conectar();
-            Statement stm = cn.createStatement();
-            // Ejecutar busqueda de cajas
-            String sql = "SELECT * FROM `logs`;";
-            ResultSet rs = stm.executeQuery(sql);
-                while (rs.next()) {                
-                    // Creamos contenedor de datos
-                    Logs log = new Logs();
-                    // Obtenemos y guardamos los datos de la consulta
-                    log.setIdlog(rs.getInt(1));
-                    log.setFecha(rs.getDate(2));
-                    log.setRol(rs.getString(3));
-                    log.setUsuario(rs.getString(4));
-                    log.setAccion(rs.getString(5));
-                    //Agregamos contenedor a array en sesión
-                    ListLogs.add(log);
-                }
-            // Guardar datos en la sessión del servidor
-            session.setAttribute("ListarLogs", ListLogs);
-            //Cerramos concexiones
+            Connection con = c.conectar();
+            Statement stm = con.createStatement();
+            
+            String query = "SELECT * FROM `pedidos`";
+            ResultSet rs = stm.executeQuery(query);
+//            ArrayList<Pedidos> Listarb = new ArrayList();
+//            String query2 ="SELECT * FROM `pedidos`;";
+//            ResultSet rs2 = stm.executeQuery(query2);
+
+            while (rs.next()) {
+                Cajas cj = new Cajas();
+                Sedes sd = new Sedes();
+                Pedidos p = new Pedidos();
+                Odontologos od = new Odontologos();
+                Procesos p1 = new Procesos();
+                Procesos p2 = new Procesos();
+                Procesos p3 = new Procesos();
+                
+                p.setIdpedidos(rs.getInt(1));
+                cj.setIdcajas(rs.getInt(2));
+                p.setCaja(cj);
+                sd.setIdsede(rs.getInt(3));
+                p.setClinica(sd);
+                p.setPaciente(rs.getString(4));
+                p.setOrden(rs.getString(5));
+                p.setAntagonista(rs.getString(6));
+                p.setFechaEntrada(rs.getDate(7));
+                od.setIdOdontologos(rs.getInt(8));
+                p.setOdontologo(od);
+                p.setTipoTrabajo(rs.getString(9));
+                p.setFechaEntrega(rs.getDate(10));
+                p1.setIdprocesos(rs.getInt(11));
+                p.setPrueba1(p1);
+                p2.setIdprocesos(rs.getInt(12));
+                p.setPrueba2(p2);
+                p3.setIdprocesos(rs.getInt(13));
+                p.setPrueba3(p3);
+                p.setHabilitado(rs.getBoolean(14));
+                ListarP.add(p);
+            }
+            
+            session.setAttribute("Listar", ListarP);
+            
+            // Cerramos las conecciones
             stm.close();
-            cn.close();
+            con.close();
             c.cierraConexion();
-            response.sendRedirect("Tabla-Logs.jsp");
-        } catch(SQLException e){
-            System.out.println(e.getMessage());
+
+            response.sendRedirect("Tabla-pedidos.jsp");
+        } catch (SQLException s) {
+            System.out.println(s.getMessage());
         }
         
     }

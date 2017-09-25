@@ -1,3 +1,8 @@
+<%@page import="Persistencias.Sedes"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    ArrayList<Sedes> Listado = (ArrayList<Sedes>) session.getAttribute("TablaSedes");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -9,7 +14,6 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Tabla de Sedes</h3>
-                    <a href="create-sedes.html" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">
@@ -17,42 +21,33 @@
                     <tr>
                         <th>Id</th>
                         <th>Sede</th>
-                        <th>Clínica</th>
+                        <th>Cl�nica</th>
                         <th>Estado</th>
-                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
+<%
+try {
+    Integer i = -1;
+    for (Sedes obj : Listado) {
+        i += 1;
+        %>
                     <tr>
-                        <td>1</td>
-                        <td>Sede Antioquia</td>
-                        <td>Orthoplan</td>
+                        <td><%= obj.getIdsede() %></td>
+                        <td><%= obj.getSede() %></td>
+                        <td><%= obj.getClinica().getNombreClinica() %></td>
+                        <% if(obj.getHabilitado()) { %>
                         <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-sedes.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
+                        <% } else { %>
+                        <td class="text-danger">Inactivo</td>
+                        <% } %>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Sede Atlantico</td>
-                        <td>Orthoplan</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-sedes.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sede Itagüí</td>
-                        <td>Prevenga</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-sedes.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
+        <%
+    }
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+%>
                 </tbody>
             </table>
         </div>

@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServletsSearch;
+package Tablas;
 
 import Controller.ConectaDB;
-import Persistencias.Logs;
+import Persistencias.Roles;
+import Persistencias.Usuarios;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,8 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Daniels
  */
-@WebServlet(name = "ListarLogs", urlPatterns = {"/ListarLogs"})
-public class ListarLogs extends HttpServlet {
+@WebServlet(name = "TablaUsuarios", urlPatterns = {"/TablaUsuarios"})
+public class TablaUsuarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,40 +41,53 @@ public class ListarLogs extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try {
             // Instanciación de clases
             HttpSession session = request.getSession();
-            ArrayList<Logs> ListLogs = new ArrayList();
+            ArrayList<Usuarios> ListUsuarios = new ArrayList();
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
             Statement stm = cn.createStatement();
+            Statement stm2 = cn.createStatement();
+            String query = "";
+            ResultSet rsRol = null;
             // Ejecutar busqueda de cajas
-            String sql = "SELECT * FROM `logs`;";
+            String sql = "SELECT * FROM `usuarios`;";
             ResultSet rs = stm.executeQuery(sql);
-                while (rs.next()) {                
+            //Guardamos datos
+                while (rs.next()) {
                     // Creamos contenedor de datos
-                    Logs log = new Logs();
+                    Usuarios usuario = new Usuarios();
+                    Roles rol = new Roles();
                     // Obtenemos y guardamos los datos de la consulta
-                    log.setIdlog(rs.getInt(1));
-                    log.setFecha(rs.getDate(2));
-                    log.setRol(rs.getString(3));
-                    log.setUsuario(rs.getString(4));
-                    log.setAccion(rs.getString(5));
+                    usuario.setIdUsuarios(rs.getInt(1));
+                    usuario.setNombreUsuario(rs.getString(2));
+                    usuario.setCedula(rs.getString(3));
+                    usuario.setUsuario(rs.getString(4));
+                    usuario.setPassword(rs.getString(5));
+                    usuario.setHabilitado(rs.getBoolean(7));
+                    // Rol
+                    rol.setIdrol(rs.getInt(6));
+                    query = "SELECT `rol` FROM `roles` WHERE `idrol`='" + rs.getInt(6) + "';";
+                    rsRol = stm2.executeQuery(query);
+                    if(rsRol.next()){
+                        rol.setRol(rsRol.getString(1));
+                    }
+                    usuario.setRolId(rol);
+                    
                     //Agregamos contenedor a array en sesión
-                    ListLogs.add(log);
+                    ListUsuarios.add(usuario);
                 }
             // Guardar datos en la sessión del servidor
-            session.setAttribute("ListarLogs", ListLogs);
+            session.setAttribute("TablaUsuarios", ListUsuarios);
             //Cerramos concexiones
             stm.close();
             cn.close();
             c.cierraConexion();
-            response.sendRedirect("Tabla-Logs.jsp");
-        } catch(SQLException e){
+            response.sendRedirect("Tabla-usuarios.jsp");
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

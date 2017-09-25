@@ -18,7 +18,6 @@
             <div class="card top70">
                 <div class="card-header">
                     <h3 class="float-left">Busqueda de Pedidos</h3>
-                    <a href="create-pedidos.jsp" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -28,7 +27,6 @@
                             <th>Pedido</th>
                             <th>Caja</th>
                             <th>Clinica</th>
-                         
                             <th>Paciente</th>
                             <th>Orden</th>
                             <th>antagonista</th>

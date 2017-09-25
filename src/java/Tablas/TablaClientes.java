@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServletsSearch;
+package Tablas;
 
 import Controller.ConectaDB;
-import Persistencias.Logs;
+import Persistencias.Clinicas;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Daniels
  */
-@WebServlet(name = "ListarLogs", urlPatterns = {"/ListarLogs"})
-public class ListarLogs extends HttpServlet {
+@WebServlet(name = "TablaClientes", urlPatterns = {"/TablaClientes"})
+public class TablaClientes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,40 +39,41 @@ public class ListarLogs extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try {
-            // Instanciación de clases
+            ArrayList<Clinicas> Clinica = new ArrayList();
             HttpSession session = request.getSession();
-            ArrayList<Logs> ListLogs = new ArrayList();
+            //Instanciamos las conexiones
             ConectaDB c = new ConectaDB();
-            Connection cn = c.conectar();
-            Statement stm = cn.createStatement();
-            // Ejecutar busqueda de cajas
-            String sql = "SELECT * FROM `logs`;";
-            ResultSet rs = stm.executeQuery(sql);
-                while (rs.next()) {                
-                    // Creamos contenedor de datos
-                    Logs log = new Logs();
-                    // Obtenemos y guardamos los datos de la consulta
-                    log.setIdlog(rs.getInt(1));
-                    log.setFecha(rs.getDate(2));
-                    log.setRol(rs.getString(3));
-                    log.setUsuario(rs.getString(4));
-                    log.setAccion(rs.getString(5));
-                    //Agregamos contenedor a array en sesión
-                    ListLogs.add(log);
-                }
-            // Guardar datos en la sessión del servidor
-            session.setAttribute("ListarLogs", ListLogs);
-            //Cerramos concexiones
+            Connection con = c.conectar();
+            Statement stm = con.createStatement();
+
+            //Consultas
+            ResultSet rs = stm.executeQuery("SELECT * FROM `clinicas`;");
+            while( rs.next() ) {
+                Clinicas clinic = new Clinicas();
+                //Guardar en clase Usuarios
+                clinic.setIdClinicas      (rs.getInt(1));
+                clinic.setNitClinicas     (rs.getString(2));
+                clinic.setNombreClinica   (rs.getString(3));
+                clinic.setDireccionClinica(rs.getString(4));
+                clinic.setTelefonoClinica (rs.getString(5));
+                clinic.setHabilitado      (rs.getBoolean(6));
+                //Guardar los resultados en el ArrayList
+                Clinica.add(clinic);
+            }
+            //Guardar datos en la session
+            session.setAttribute("TablaClientes", Clinica);
+            
+            //Cerramos las conexiones
             stm.close();
-            cn.close();
+            con.close();
             c.cierraConexion();
-            response.sendRedirect("Tabla-Logs.jsp");
-        } catch(SQLException e){
+            
+            response.sendRedirect("Tabla-clientes.jsp");
+            
+        }catch(SQLException e){
             System.out.println(e.getMessage());
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

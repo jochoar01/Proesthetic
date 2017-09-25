@@ -1,3 +1,8 @@
+<%@page import="Persistencias.Clinicas"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    ArrayList<Clinicas> ListaClinicas = (ArrayList<Clinicas>) session.getAttribute("TablaClientes");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -8,8 +13,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="float-left">Tabla Clientes / Clínicas</h3>
-                    <a href="create-clientes.html" class="btn btn-success fa fa-plus float-right"></a>
+                    <h3 class="float-left">Tabla Clientes / Cl�nicas</h3>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">
@@ -18,37 +22,30 @@
                         <th>Id</th>
                         <th>Clinica/cliente</th>
                         <th>Estado</th>
-                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                        int pos = -1;
+                        try {
+                            for (Clinicas obj : ListaClinicas) {
+                    %>
                     <tr>
-                        <td>1</td>
-                        <td>ProEsthetic</td>
+                        <td><%= obj.getIdClinicas()%></td>
+                        <td><%= obj.getNombreClinica()%></td>
+                        <% if(obj.getHabilitado()) { %>
                         <td class="text-success">Activo</td>
-                        <td>
-							<a href="update-clientes.html" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
+                        <% } else { %>
+                        <td class="text-danger">Inactivo</td>
+                        <% } %>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Denti Salud</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-clientes.html" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sonría</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-clientes.html" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-							<a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
+                    <%
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                            response.sendRedirect("index.jsp");
+                        };
+                    %>
                 </tbody>
             </table>
         </div>

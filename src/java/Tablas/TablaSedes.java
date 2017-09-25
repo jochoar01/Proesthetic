@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServletsSearch;
+package Tablas;
 
 import Controller.ConectaDB;
-import Persistencias.Cajas;
-import Persistencias.Odontologos;
-import Persistencias.Pedidos;
-import Persistencias.Procesos;
+import Persistencias.Clinicas;
 import Persistencias.Sedes;
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,10 +23,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author juan
+ * @author Daniels
  */
-@WebServlet(name = "TablaPedidos", urlPatterns = {"/TablaPedidos"})
-public class TablaPedidos extends HttpServlet {
+@WebServlet(name = "TablaSedes", urlPatterns = {"/TablaSedes"})
+public class TablaSedes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,65 +40,51 @@ public class TablaPedidos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try {
+            // Instanciación de clases
             HttpSession session = request.getSession();
-            ArrayList<Pedidos> ListarP = new ArrayList();
-
+            ArrayList<Sedes> ListSedes = new ArrayList();
             ConectaDB c = new ConectaDB();
-            Connection con = c.conectar();
-            Statement stm = con.createStatement();
-            
-            String query = "SELECT * FROM `pedidos`";
-            ResultSet rs = stm.executeQuery(query);
-//            ArrayList<Pedidos> Listarb = new ArrayList();
-//            String query2 ="SELECT * FROM `pedidos`;";
-//            ResultSet rs2 = stm.executeQuery(query2);
-
-            while (rs.next()) {
-                Cajas cj = new Cajas();
-                Sedes sd = new Sedes();
-                Pedidos p = new Pedidos();
-                Odontologos od = new Odontologos();
-                Procesos p1 = new Procesos();
-                Procesos p2 = new Procesos();
-                Procesos p3 = new Procesos();
-                
-                p.setIdpedidos(rs.getInt(1));
-                cj.setIdcajas(rs.getInt(2));
-                p.setCaja(cj);
-                sd.setIdsede(rs.getInt(3));
-                p.setClinica(sd);
-                p.setPaciente(rs.getString(4));
-                p.setOrden(rs.getString(5));
-                p.setAntagonista(rs.getString(6));
-                p.setFechaEntrada(rs.getDate(7));
-                od.setIdOdontologos(rs.getInt(8));
-                p.setOdontologo(od);
-                p.setTipoTrabajo(rs.getString(9));
-                p.setFechaEntrega(rs.getDate(10));
-                p1.setIdprocesos(rs.getInt(11));
-                p.setPrueba1(p1);
-                p2.setIdprocesos(rs.getInt(12));
-                p.setPrueba2(p2);
-                p3.setIdprocesos(rs.getInt(13));
-                p.setPrueba3(p3);
-                p.setHabilitado(rs.getBoolean(14));
-                ListarP.add(p);
-            }
-            
-            session.setAttribute("Listar", ListarP);
-            
-            // Cerramos las conecciones
+            Connection cn = c.conectar();
+            Statement stm = cn.createStatement();
+            Statement stm2 = cn.createStatement();
+            // Ejecutar busqueda de cajas
+            String sql = "SELECT * FROM `sedes`;";
+            String query = "";
+            ResultSet rs = stm2.executeQuery(sql);
+            ResultSet rsClinica = null; 
+                while (rs.next()) {
+                    // Creamos contenedor de datos
+                    Sedes sede = new Sedes();
+                    Clinicas clinica = new Clinicas();
+                    // Obtenemos y guardamos los datos de la consulta
+                    sede.setIdsede(rs.getInt(1));
+                    sede.setSede(rs.getString(2));
+                    sede.setHabilitado(rs.getBoolean(4));
+                    //Clinica
+                    clinica.setIdClinicas(rs.getInt(3));
+                    query = "SELECT `NombreClinica` FROM `clinicas` WHERE `idClinicas` = '" + rs.getInt(3) + "';";
+                    rsClinica = stm.executeQuery(query);
+                    if (rsClinica.next()) {
+                        clinica.setNombreClinica(rsClinica.getString(1));
+                    }
+                    sede.setClinica(clinica);
+                    
+                    //Agregamos contenedor a array en sesión
+                    ListSedes.add(sede);
+                }
+            // Guardar datos en la sessión del servidor
+            session.setAttribute("TablaSedes", ListSedes);
+            //Cerramos concexiones
+            stm2.close();
             stm.close();
-            con.close();
+            cn.close();
             c.cierraConexion();
-
-            response.sendRedirect("Tabla-pedidos.jsp");
-        } catch (SQLException s) {
-            System.out.println(s.getMessage());
+            //Redireccionamos
+            response.sendRedirect("Tabla-sedes.jsp");
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
