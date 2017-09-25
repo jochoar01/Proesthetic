@@ -48,9 +48,13 @@ public class ListarUsuarios extends HttpServlet {
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
             Statement stm = cn.createStatement();
+            Statement stm2 = cn.createStatement();
+            String query = "";
+            ResultSet rsRol = null;
             // Ejecutar busqueda de cajas
             String sql = "SELECT * FROM `usuarios` WHERE `Habilitado`='1';";
             ResultSet rs = stm.executeQuery(sql);
+            //Guardamos datos
                 while (rs.next()) {
                     // Creamos contenedor de datos
                     Usuarios usuario = new Usuarios();
@@ -61,9 +65,16 @@ public class ListarUsuarios extends HttpServlet {
                     usuario.setCedula(rs.getString(3));
                     usuario.setUsuario(rs.getString(4));
                     usuario.setPassword(rs.getString(5));
-                    rol.setIdrol(rs.getInt(6));
                     usuario.setHabilitado(rs.getBoolean(7));
+                    // Rol
+                    rol.setIdrol(rs.getInt(6));
+                    query = "SELECT `rol` FROM `roles` WHERE `idrol`='" + rs.getInt(6) + "';";
+                    rsRol = stm2.executeQuery(query);
+                    if(rsRol.next()){
+                        rol.setRol(rsRol.getString(1));
+                    }
                     usuario.setRolId(rol);
+                    
                     //Agregamos contenedor a array en sesión
                     ListUsuarios.add(usuario);
                 }
@@ -73,6 +84,7 @@ public class ListarUsuarios extends HttpServlet {
             stm.close();
             cn.close();
             c.cierraConexion();
+            response.sendRedirect("search-usuarios.jsp");
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

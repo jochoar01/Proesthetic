@@ -1,7 +1,6 @@
 package ServletsInsert;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,11 +46,11 @@ public class create_usuarios extends HttpServlet {
             con.close();
             c.cierraConexion();
 
-           response.sendRedirect("search-usuarios.jsp");
+           response.sendRedirect("ListarUsuarios");
           
 
-        } catch (Exception s) {
-            s.printStackTrace();
+        } catch (SQLException s) {
+            System.out.println(s.getMessage());
         }
     }
 

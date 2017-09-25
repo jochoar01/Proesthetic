@@ -1,3 +1,5 @@
+<%@page import="Persistencias.Usuarios"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="Persistencias.Roles"%>
 <%
     Integer pos = null;
@@ -48,10 +50,15 @@
                         <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="<%= obj.getUsuario()%>">
                     </div>
                     <!-- End Division -->
+                    <% if (session.getAttribute("rol").equals("1")) { %>
                     <div class="form-group">
                         <label>Contraseña</label>
-                        <input type="text" name="contrasena" class="form-control" placeholder="Contraseña" value="<%= obj.getPassword()%>" readonly>
+                        <input type="text" name="contrasena" class="form-control" placeholder="Contraseña" value="<%= obj.getPassword()%>">
                     </div>
+                    <% } else { %>
+                    <input type="hidden" name="contrasena" value="<%= obj.getPassword()%>" readonly>
+                    <% } %>
+                    <!-- End Division -->
                     <div class="form-group">
                         <label>Rol de Usuario</label>
                         <select name="rol" class="form-control">

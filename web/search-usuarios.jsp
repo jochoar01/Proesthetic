@@ -1,3 +1,8 @@
+<%@page import="Persistencias.Usuarios"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    ArrayList<Usuarios> Listado = (ArrayList<Usuarios>) session.getAttribute("ListarUsuarios");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -17,47 +22,44 @@
                     <tr>
                         <th>Id</th>
                         <th>Usuario</th>
-                        <th>ContraseÃ±a</th>
+                        <% if (session.getAttribute("rol").equals("1")) { %>
+                        <th>Contraseña</th>
+                        <% } else { %>
+                        <th style="display: none;">Contraseña</th>
+                        <% } %>
                         <th>Rol</th>
-						<th>Empleado</th>
+                        <th>Empleado</th>
                         <th>Estado</th>
                         <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody>
+<%
+try {
+    Integer i = -1;
+    for (Usuarios obj : Listado) {
+        i += 1;
+        %>
                     <tr>
-                        <td>1</td>
-                        <td>UsuarioUno</td>
-                        <td>ContrasenaUno</td>
-                        <td>Rol Usuario</td>
-                        <td>Nombre Empleado</td>
+                        <td><%= obj.getIdUsuarios()%></td>
+                        <td><%= obj.getUsuario()%></td>
+                        <td><%= obj.getPassword()%></td>
+                        <td><%= obj.getRolId().getRol() %></td>
+                        <td><%= obj.getNombreUsuario()%></td>
                         <td class="text-success">Activo</td>
                         <td>
-                            <a href="update-usuarios.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <a href="update-usuarios.jsp?site=<%= i %>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <% if (session.getAttribute("rol").equals("1")) { %>
+                            <a href="EliminarUsuarios?id=<%= obj.getIdUsuarios()%>" class="btn btn-danger fa fa-times"></a>
+                            <% } %>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>UsuarioDos</td>
-                        <td>ContrasenaDos</td>
-                        <td>Rol Usuario</td>
-                        <td>Nombre Empleado</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-usuarios.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>UsuarioTres</td>
-                        <td>ContrasenaTres</td>
-                        <td>Rol Usuario</td>
-                        <td>Nombre Empleado</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-usuarios.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
+        <%
+    }
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+%>
                 </tbody>
             </table>
         </div>
