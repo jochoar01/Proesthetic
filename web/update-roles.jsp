@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="Persistencias.Roles"%>
 <%
     Integer pos = null;

@@ -56,7 +56,7 @@ public class ActualizarProcesos extends HttpServlet {
             cn.close();
             c.cierraConexion();
             // Redireccionamos al listar
-            response.sendRedirect("Listarprocesos");
+            response.sendRedirect("ListarProcesos");
         } catch (SQLException s) {
             System.out.println(s.getMessage());
             response.sendRedirect("index.jsp");

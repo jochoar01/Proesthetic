@@ -66,6 +66,8 @@ public class ListarRoles extends HttpServlet {
             stm.close();
             cn.close();
             c.cierraConexion();
+            //Redireccionamos
+            response.sendRedirect("search-roles.jsp");
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

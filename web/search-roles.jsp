@@ -1,3 +1,8 @@
+<%@page import="Persistencias.Roles"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    ArrayList<Roles> Listado = (ArrayList<Roles>) session.getAttribute("ListarRoles");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -22,30 +27,29 @@
                     </tr>
                 </thead>
                 <tbody>
+<%
+try {
+    Integer i = -1;
+    for (Roles obj : Listado) {
+        i += 1;
+        %>
                     <tr>
-                        <td>1</td>
-                        <td>Gerente</td>
+                        <td><%= obj.getIdrol()%></td>
+                        <td><%= obj.getRol()%></td>
                         <td class="text-success">Activo</td>
                         <td>
-                            <a href="update-roles.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <a href="update-roles.jsp?site=<%= i %>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <% if (session.getAttribute("rol").equals("1")) { %>
+                            <a href="EliminarRoles?id=<%= obj.getIdrol()%>" class="btn btn-danger fa fa-times"></a>
+                            <% } %>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Administrador</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-roles.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Cajero</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-roles.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
+        <%
+    }
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+%>
                 </tbody>
             </table>
         </div>

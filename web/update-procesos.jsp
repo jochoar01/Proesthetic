@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="Persistencias.Procesos"%>
 <%
     Integer pos = null;
@@ -6,7 +7,7 @@
     try
     {
         pos = Integer.parseInt((String)request.getParameter("site"));
-        ListaProcesos = (ArrayList<Procesos>)session.getAttribute("ListarProcesos");
+        ListaProcesos = (ArrayList<Procesos>)session.getAttribute("Listarprocesos");
         obj = (Procesos)ListaProcesos.get(pos);
     }
     catch(Exception e) {
@@ -38,7 +39,7 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Tipo de Trabajo</label>
-                        <input type="text" name="idtrabajo" class="form-control" value="<%= obj.getTrabajo()%>" placeholder="Escriba el tipo de trabajo">
+                        <input type="text" name="idtrabajo" class="form-control" value="<%= obj.getTrabajo() %>" placeholder="Escriba el tipo de trabajo">
                         <!--
                         <select name="idtrabajo" class="form-control">
                             <option value="">Seleccione...</option>
@@ -53,10 +54,10 @@
                         <label>Estado</label>
                         <select name="estado" class="form-control">
                         <%
-                            if (obj.getHabilitado().equals("1")) {
-                                %><option value="1" selected>Habilitado</option><option value="0" >Inhabilitado</option><%
+                            if (obj.getHabilitado().equals("true")) {
+                                %><option value="true" selected>Habilitado</option><option value="false" >Inhabilitado</option><%
                             } else {
-                                %><option value="1">Habilitado</option><option value="0" selected>Inhabilitado</option><%
+                                %><option value="true">Habilitado</option><option value="false" selected>Inhabilitado</option><%
                             }
                         %>
                         </select>

@@ -48,7 +48,7 @@ public class ListarProcesos extends HttpServlet {
             Connection cn = c.conectar();
             Statement stm = cn.createStatement();
             // Ejecutar busqueda de cajas
-            String sql = "SELECT * FROM `procesos` WHERE `Habilitado`='1';";
+            String sql = "SELECT * FROM `procesos` WHERE `Habilitado`='true';";
             ResultSet rs = stm.executeQuery(sql);
                 while (rs.next()) {
                     // Creamos contenedor de datos

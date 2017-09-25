@@ -43,7 +43,7 @@ public class create_roles extends HttpServlet {
             con.close();
             c.cierraConexion();
 
-           response.sendRedirect("search-roles.jsp");
+           response.sendRedirect("ListarRoles");
           
 
         } catch (Exception s) {

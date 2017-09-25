@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="Persistencias.Procesos"%>
 <%
     ArrayList<Procesos> Listado = (ArrayList<Procesos>) session.getAttribute("Listarprocesos");
@@ -35,11 +36,14 @@ try {
         %>
                     <tr>
                         <td><%= obj.getIdprocesos() %></td>
-                        <td><%= obj.getTrabajo()%></td>
+                        <td><%= obj.getTrabajo() %></td>
                         <td><%= obj.getProceso() %></td>
                         <td class="text-success">Activo</td>
                         <td>
                             <a href="update-procesos.jsp?site=<%= i %>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <% if (session.getAttribute("rol").equals("1")) { %>
+                            <a href="EliminarProcesos?id=<%= obj.getIdprocesos()%>" class="btn btn-danger fa fa-times"></a>
+                            <% } %>
                         </td>
                     </tr>
         <%
