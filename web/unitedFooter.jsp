@@ -11,3 +11,9 @@
                 <small class="float-right"><b>Desarrollado por:</b> J.D.</small>
             </div>
         </footer>
+		<!-- jQuery first, then Tether, then Bootstrap JS. -->
+		<script src="Assets/js/jquery.min.js"></script>
+		<script src="Assets/js/tether.min.js"></script>
+		<script src="Assets/js/bootstrap.min.js"></script>
+		<script src="Assets/JavaScript/funciones.js"></script>
+		<script src="Assets/JavaScript/md5.min.js"></script>

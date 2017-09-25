@@ -26,12 +26,12 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Caja:</label>
-                        <input type="text" name="Caja" class="form-control" placeholder="Caja" value="<%= obj.getCaja() %>">
+                        <input type="text" name="Caja" class="form-control" placeholder="Caja" value="<%= obj.getCaja().getIdcajas() %>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Clinica:</label>
-                        <input type="text" name="Clinica" class="form-control" placeholder="Clinica" value="<%= obj.getClinica() %>">
+                        <input type="text" name="Clinica" class="form-control" placeholder="Clinica" value="<%= obj.getClinica().getIdsede() %>">
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
@@ -56,7 +56,7 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Odontologo</label>
-                        <input name="Odontologo" type="text" class="form-control" value="<%=obj.getOdontologo()%>" >
+                        <input name="Odontologo" type="text" class="form-control" value="<%=obj.getOdontologo().getIdOdontologos()%>" >
                     </div>
                     <!-- End Division -->
                     <div class="form-group">
@@ -71,17 +71,17 @@
                     <!-- End Division -->
                     <div class="form-group">
                         <label>Prueba 1</label>
-                        <input name="Prueba1" type="text" class="form-control" value="<%=obj.getPrueba1()%>">
+                        <input name="Prueba1" type="text" class="form-control" value="<%=obj.getPrueba1().getIdprocesos()%>">
                     </div>
                     <!--End Division-->
                     <div class="form-group">
                         <label>Prueba 2</label>
-                        <input name="Prueba2" type="text" class="form-control" value="<%=obj.getPrueba2()%>">
+                        <input name="Prueba2" type="text" class="form-control" value="<%=obj.getPrueba2().getIdprocesos()%>">
                     </div>
                     <!--End Division-->
                     <div class="form-group">
                         <label>Prueba 3</label>
-                        <input name="Prueba3" type="text" class="form-control" value="<%=obj.getPrueba3()%>">
+                        <input name="Prueba3" type="text" class="form-control" value="<%=obj.getPrueba3().getIdprocesos()%>">
                     </div>
                     <!--End Division-->
                     <div class="form-group">
@@ -95,9 +95,6 @@
         </div>
         <!-- End Complete Grid -->
         <%@include file="unitedFooter.jsp" %>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="Assets/js/jquery.min.js"></script>
-        <script src="Assets/js/tether.min.js"></script>
-        <script src="Assets/js/bootstrap.min.js"></script>
+
     </body>
 </html>

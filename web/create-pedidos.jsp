@@ -86,10 +86,6 @@
         </div>
         <!-- End Row -->
         <!-- End Complete Grid -->
-        <%@include file="unitedFooter.jsp" %>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="media/js/jquery-3.2.1.min.js"></script>
-        <script src="Assets/js/tether.min.js"></script>
-        <script src="Assets/js/bootstrap.min.js"></script>
+        <%@include file="unitedFooter.jsp" %><script src="media/js/jquery-3.2.1.min.js"></script>
     </body>
 </html>

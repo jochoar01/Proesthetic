@@ -44,7 +44,7 @@
                         <td>
                             <a href="show-odontologos.jsp?id=<%= pos%>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                             <a href="update-odontologos.jsp?id=<%= pos%>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                                <% if (session.getAttribute("rol").equals("SISTEMAS")) {%>
+                                <% if (session.getAttribute("rol").equals("1")) {%>
                             <a href="EliminarOdontologos?id=<%= obj.getIdOdontologos()%>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                                 <% } %>
                         </td>
@@ -61,9 +61,6 @@
         </div>
         <!-- Footer -->
         <%@include file="unitedFooter.jsp" %>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="Assets/js/jquery.min.js"></script>
-        <script src="Assets/js/tether.min.js"></script>
-        <script src="Assets/js/bootstrap.min.js"></script>
+
     </body>
 </html>

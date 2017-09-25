@@ -21,14 +21,14 @@
                     <!--<a class="dropdown-item" href="search-tipotrabajo.jsp">Tipos de Trabajos</a>-->
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Facturación
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="search-facturas.jsp">Cuentas de Cobro</a>
                 </div>
-            </li>
+            </li>-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Administración

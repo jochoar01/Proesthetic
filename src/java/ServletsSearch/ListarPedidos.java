@@ -53,9 +53,7 @@ public class ListarPedidos extends HttpServlet {
             Connection con = c.conectar();
             Statement stm = con.createStatement();
             String query = "SELECT * FROM `pedidos` WHERE `Habilitado`='1';";
-//            String query2 ="SELECT * FROM `pedidos`;";
             ResultSet rs = stm.executeQuery(query);
-//            ResultSet rs2 = stm.executeQuery(query2);
 
             while (rs.next()) {
                 Cajas cj = new Cajas();
@@ -90,27 +88,7 @@ public class ListarPedidos extends HttpServlet {
             }
 
             session.setAttribute("Listar", ListarP);
-//            
-//              while (rs.next()) {
-//                Pedidos b = new Pedidos();
-//
-//                b.setIdpedidos   (rs.getInt(1)    );
-//                b.setCaja        (rs.getString(2) );
-//                b.setClinica     (rs.getString(3) );
-//                b.setPaciente    (rs.getString(4) );
-//                b.setOrden       (rs.getString(5) );
-//                b.setAntagonista (rs.getString(6) );
-//                b.setFechaEntrada(rs.getString(7) );
-//                b.setOdontologo  (rs.getString(8) );
-//                b.setTipoTrabajo (rs.getString(9) );
-//                b.setFechaEntrega(rs.getString(10));
-//                b.setPrueba1     (rs.getString(11));
-//                b.setPrueba2     (rs.getString(12));
-//                b.setPrueba3     (rs.getString(13));
-//                b.setHabilitado  (rs.getBoolean(14));
-//                Listarb.add(b);
-//            }
-//            session.setAttribute("Listarb", Listarb);
+
             stm.close();
             con.close();
             c.cierraConexion();

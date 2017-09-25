@@ -10,9 +10,7 @@
     <body>
         <!-- Fixed navbar -->
         <%@include file="unitedMenu.jsp" %>
-        <!-- Fixed navbar -->
-        
-         <%
+        <!-- Fixed navbar --> <%
             ArrayList<Pedidos> Listar = (ArrayList<Pedidos>) session.getAttribute("Listar");
             int p = -1;
         %>
@@ -98,9 +96,6 @@
         </div>
         <!-- Footer -->
         <%@include file="unitedFooter.jsp" %>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="Assets/js/jquery.min.js"></script>
-        <script src="Assets/js/tether.min.js"></script>
-        <script src="Assets/js/bootstrap.min.js"></script>
+
     </body>
 </html>

@@ -54,11 +54,12 @@ public class BusquedaClinicas extends HttpServlet {
             while( rs.next() ) {
                 Clinicas clinic = new Clinicas();
                 //Guardar en clase Usuarios
-                clinic.setIdClinicas      ( rs.getInt(1)    );
-                clinic.setNitClinicas     ( rs.getString(2) );
-                clinic.setNombreClinica   ( rs.getString(3) );
-                clinic.setDireccionClinica( rs.getString(4) );
-                clinic.setTelefonoClinica ( rs.getString(5) );
+                clinic.setIdClinicas      (rs.getInt(1));
+                clinic.setNitClinicas     (rs.getString(2));
+                clinic.setNombreClinica   (rs.getString(3));
+                clinic.setDireccionClinica(rs.getString(4));
+                clinic.setTelefonoClinica (rs.getString(5));
+                clinic.setHabilitado      (rs.getBoolean(6));
                 //Guardar los resultados en el ArrayList
                 Clinica.add(clinic);
             }

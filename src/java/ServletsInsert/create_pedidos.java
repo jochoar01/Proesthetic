@@ -1,7 +1,6 @@
 package ServletsInsert;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,7 +40,7 @@ public class create_pedidos extends HttpServlet {
             String prueba2 = request.getParameter("Prueba2");
             String prueba3 = request.getParameter("Prueba3");
             
-            String query = "INSERT INTO `pedidos`(`caja`,`clinica`,`paciente`,`orden`,`antagonista`,`fecha_entrada`,`odontologoid`,`tipo_trabajo`,`fecha_entrega`,`prueba1`,`prueba2`,`prueba3`,`Habilitado`) VALUES ('" + caja + "','" + clinica + "','" + paciente + "','" + orden + "','" + antagonista + "','" + fecha_entrada + "','" + odontologo + "','" + tipo_trabajo + "','" + fecha_entrega + "','" + prueba1 + "','" + prueba2 + "','" + prueba3 + "'," + true + ");";
+            String query = "INSERT INTO `pedidos`(`caja`,`clinica`,`paciente`,`orden`,`antagonista`,`fecha_entrada`,`odontologo`,`tipo_trabajo`,`fecha_entrega`,`prueba1`,`prueba2`,`prueba3`,`Habilitado`) VALUES ('" + caja + "','" + clinica + "','" + paciente + "','" + orden + "','" + antagonista + "','" + fecha_entrada + "','" + odontologo + "','" + tipo_trabajo + "','" + fecha_entrega + "','" + prueba1 + "','" + prueba2 + "','" + prueba3 + "'," + true + ");";
             stm.execute(query);
             String sQuery = query.replace("'", "`");
             String querylog = "insert into logs (fecha,rol,usuario,accion)values(now(),'" + session.getAttribute("rol") + "','" + session.getAttribute("nombre") + "','" + sQuery + "')";
@@ -53,8 +52,8 @@ public class create_pedidos extends HttpServlet {
 
             response.sendRedirect("ListarPedidos");
 
-        } catch (Exception s) {
-            s.printStackTrace();
+        } catch (SQLException s) {
+            System.out.println(s.getMessage());
         }
     }
 

@@ -59,6 +59,7 @@ public class BusquedaOdontologos extends HttpServlet {
                 obj.setNombreOdontologo  ( rs.getString(2) );
                 obj.setTelefonoOdontologo( rs.getString(3) );
                 obj.setEmailOdontologo   ( rs.getString(4) );
+                obj.setHabilitado(rs.getBoolean(5));
                 //Guardar los resultados en el ArrayList
                 Odontologo.add(obj);
             }

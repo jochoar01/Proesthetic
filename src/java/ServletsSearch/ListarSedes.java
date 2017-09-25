@@ -48,9 +48,12 @@ public class ListarSedes extends HttpServlet {
             ConectaDB c = new ConectaDB();
             Connection cn = c.conectar();
             Statement stm = cn.createStatement();
+            Statement stm2 = cn.createStatement();
             // Ejecutar busqueda de cajas
             String sql = "SELECT * FROM `sedes` WHERE `Habilitado`='1';";
-            ResultSet rs = stm.executeQuery(sql);
+            String query = "";
+            ResultSet rs = stm2.executeQuery(sql);
+            ResultSet rsClinica = null; 
                 while (rs.next()) {
                     // Creamos contenedor de datos
                     Sedes sede = new Sedes();
@@ -58,18 +61,28 @@ public class ListarSedes extends HttpServlet {
                     // Obtenemos y guardamos los datos de la consulta
                     sede.setIdsede(rs.getInt(1));
                     sede.setSede(rs.getString(2));
-                    clinica.setIdClinicas(rs.getInt(3));
-                    sede.setClinica(clinica);
                     sede.setHabilitado(rs.getBoolean(4));
+                    //Clinica
+                    clinica.setIdClinicas(rs.getInt(3));
+                    query = "SELECT `NombreClinica` FROM `clinicas` WHERE `idClinicas` = '" + rs.getInt(3) + "';";
+                    rsClinica = stm.executeQuery(query);
+                    if (rsClinica.next()) {
+                        clinica.setNombreClinica(rsClinica.getString(1));
+                    }
+                    sede.setClinica(clinica);
+                    
                     //Agregamos contenedor a array en sesión
                     ListSedes.add(sede);
                 }
             // Guardar datos en la sessión del servidor
             session.setAttribute("ListarSedes", ListSedes);
             //Cerramos concexiones
+            stm2.close();
             stm.close();
             cn.close();
             c.cierraConexion();
+            //Redireccionamos
+            response.sendRedirect("search-sedes.jsp");
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

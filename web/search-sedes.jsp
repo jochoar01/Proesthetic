@@ -1,3 +1,8 @@
+<%@page import="Persistencias.Sedes"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    ArrayList<Sedes> Listado = (ArrayList<Sedes>) session.getAttribute("ListarSedes");
+%>
 <!DOCTYPE html>
 <html lang="es">
     <%@include file="unitedhead.jsp" %>
@@ -17,47 +22,41 @@
                     <tr>
                         <th>Id</th>
                         <th>Sede</th>
-                        <th>Clínica</th>
+                        <th>Cl�nica</th>
                         <th>Estado</th>
                         <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody>
+<%
+try {
+    Integer i = -1;
+    for (Sedes obj : Listado) {
+        i += 1;
+        %>
                     <tr>
-                        <td>1</td>
-                        <td>Sede 1</td>
-                        <td>Clínica 1</td>
+                        <td><%= obj.getIdsede() %></td>
+                        <td><%= obj.getSede() %></td>
+                        <td><%= obj.getClinica().getNombreClinica() %></td>
                         <td class="text-success">Activo</td>
                         <td>
-                            <a href="update-sedes.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <a href="update-sedes.jsp?site=<%= i %>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <% if (session.getAttribute("rol").equals("1")) { %>
+                            <a href="EliminarSedes?id=<%= obj.getIdsede()%>" class="btn btn-danger fa fa-times"></a>
+                            <% } %>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Sede 2</td>
-                        <td>Clínica 2</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-sedes.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sede 3</td>
-                        <td>Clínica 3</td>
-                        <td class="text-success">Activo</td>
-                        <td>
-                            <a href="update-sedes.html" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
+        <%
+    }
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+%>
                 </tbody>
             </table>
         </div>
         <!-- Footer -->
         <%@include file="unitedFooter.jsp" %>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="Assets/js/jquery.min.js"></script>
-        <script src="Assets/js/tether.min.js"></script>
-        <script src="Assets/js/bootstrap.min.js"></script>
+
     </body>
 </html>
