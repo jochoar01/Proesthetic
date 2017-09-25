@@ -1,5 +1,3 @@
-<%@page import="Persistencias.Usuarios"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <nav id="barranav" class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +39,7 @@
                     <a id="SedesMenu" class="dropdown-item" href="BusquedaOdontologos">Odontologos <span class="sr-only">(current)</span></a>
                 </div>
             </li>
-            <% if (session.getAttribute("rol").equals("SISTEMAS")) { %>
+            <% if ( session.getAttribute("rol").equals("1") ) { %>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Tablas

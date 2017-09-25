@@ -70,8 +70,8 @@
         <%@include file="unitedFooter.jsp" %>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
         <script src="media/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-        <script src="bootstrap/js/tether.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="Assets/js/tether.min.js"></script>
+        <script src="Assets/js/bootstrap.min.js"></script>
         
         <script src="media/js/dataTables.bootstrap.min.js"></script>
         <script src="media/js/jquery.dataTables.min.js"></script>

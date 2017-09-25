@@ -57,8 +57,8 @@
         <!-- End Complete Grid -->
         <%@include file="unitedFooter.jsp" %>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="bootstrap/js/jquery.min.js"></script>
-        <script src="bootstrap/js/tether.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="Assets/js/jquery.min.js"></script>
+        <script src="Assets/js/tether.min.js"></script>
+        <script src="Assets/js/bootstrap.min.js"></script>
     </body>
 </html>

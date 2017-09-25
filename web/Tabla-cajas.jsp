@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Tabla cajas</h3>
-                    <a href="create-cajas.html" class="btn btn-success fa fa-plus float-right"></a>
+                    <a href="create-cajas.jsp" class="btn btn-success fa fa-plus float-right"></a>
                 </div>
             </div>
             <table id="tabla" class="table table-stripped table-hover table-striped">
@@ -55,8 +55,8 @@
         <!-- Footer -->
         <%@include file="unitedFooter.jsp" %>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="bootstrap/js/jquery.min.js"></script>
-        <script src="bootstrap/js/tether.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="Assets/js/jquery.min.js"></script>
+        <script src="Assets/js/tether.min.js"></script>
+        <script src="Assets/js/bootstrap.min.js"></script>
     </body>
 </html>

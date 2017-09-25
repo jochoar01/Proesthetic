@@ -61,9 +61,12 @@ public class UsuarioLogin extends HttpServlet {
             ResultSet rs = stm.executeQuery("SELECT * FROM `usuarios` WHERE `usuario` = '" + user + "' AND `Password` ='" + pass + "' LIMIT 0 , 1;");
             //Verificamos y obtenemos datos de la consulta
             if (rs.next()) {
-                session.setAttribute("rol", rs.getString(6));
-                session.setAttribute("nombre", rs.getString(2));
+                session.setAttribute("rol", (String)rs.getString(6));
+                session.setAttribute("nombre", (String)rs.getString(2));
                 //response.sendRedirect("inicio.jsp");
+            }else{
+                response.sendRedirect("index.jsp");
+                return;
             }
             
             //obtenemos datos de los roles

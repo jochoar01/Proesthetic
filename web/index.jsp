@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Proesthetic</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="Assets/css/bootstrap.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/Styles.css">
+        <link rel="stylesheet" type="text/css" href="Assets/css/Styles.css">
     </head>
     <body>
         <!-- Fixed navbar -->
@@ -66,10 +66,10 @@
         </div>
         <%@include file="unitedFooter.jsp" %>
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script src="bootstrap/js/jquery.min.js"></script>
-        <script src="bootstrap/js/tether.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="JavaScript/funciones.js"></script>
-        <script src="JavaScript/md5.min.js"></script>
+        <script src="Assets/js/jquery.min.js"></script>
+        <script src="Assets/js/tether.min.js"></script>
+        <script src="Assets/js/bootstrap.min.js"></script>
+        <script src="Assets/JavaScript/funciones.js"></script>
+        <script src="Assets/JavaScript/md5.min.js"></script>
     </body>
 </html>
